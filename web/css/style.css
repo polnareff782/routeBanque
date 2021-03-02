@@ -1,0 +1,105 @@
+q/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : 19 févr. 2021, 12:34:07
+    Author     : polnareff
+*/
+
+.titre{
+    text-align: center;
+    color : tomato;
+    letter-spacing: 5px;
+}
+
+.name {
+    font-weight: bold;
+}
+
+.sousTitre{
+    text-align: center;
+    color : pink;
+    letter-spacing: 2px;
+
+}
+
+.center{
+    text-align: center;
+}
+
+.p-pres{
+    letter-spacing: 3px;
+    font-size: large;
+}
+
+.contenu{
+    margin-left: 250px;
+    margin-right: 250px;
+}
+
+.menu{
+    font-size: x-large;
+}
+
+.marge-top{
+    margin-top: 50px;
+}
+
+.pipe{
+    color : turquoise;
+    letter-spacing: 3px;
+}
+
+a{
+    color: pink;
+}
+
+a:hover{
+    color: red;
+}
+
+.head-table-user{
+    color: blue;
+    background-color: green;
+}
+
+.btn{
+    color: lightgray;
+    background-color: brown;
+}
+
+.btn:hover
+{
+    color: blueviolet;
+}
+
+.my-label{
+    color: darkgray;
+    letter-spacing: 3px;
+    font-size: large;
+
+}
+
+.content-login{
+    margin :auto;
+    width: 25%;
+}
+
+.shadow-card{
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.30)
+}
+
+.card-title-perso{
+    color : white;
+}
+
+.card-header-back{
+    background-color : rgb(40, 71, 192) !important;
+}
+
+.card-perso-box{
+box-shadow: 0 20px 49px rgba(0,0,0,0.30) !important;
+}
+
