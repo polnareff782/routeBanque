@@ -103,3 +103,35 @@ a:hover{
 box-shadow: 0 20px 49px rgba(0,0,0,0.30) !important;
 }
 
+.press p {
+    line-height: 1.7em;
+}
+
+.press a:link {
+    text-decoration: underline;
+}
+
+.press h4 {
+    padding-top: 20px;
+    font-weight: bold;
+    letter-spacing: 1px;
+}
+
+.titre-h3 {
+    margin-top: 1px;
+    padding-top: 15px;
+    padding-left: 50px;
+    width: auto;
+    height: 3.5em;
+}
+
+.h3 {
+    background-color: #375a7f;
+    font-size: 1.75rem;
+    font-weight: 500;
+    font-size: 1.75rem;
+    margin-block-start: 1em;
+    margin-block-end: 1em;
+    margin-inline-start: 0px;
+    margin-inline-end: 0px;
+}

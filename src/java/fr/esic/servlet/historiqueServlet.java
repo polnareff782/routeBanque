@@ -5,10 +5,10 @@
  */
 package fr.esic.servlet;
 
-import fr.esic.dao.UserDao;
-import fr.esic.model.User;
+import fr.esic.dao.ConseillerDao;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -17,10 +17,10 @@ import javax.servlet.http.HttpServletResponse;
 
 /**
  *
- * @author polnareff
+ * @author dylan55
  */
-@WebServlet(name = "ConnexionServlet", urlPatterns = {"/login"})
-public class ConnexionServlet extends HttpServlet {
+@WebServlet(name = "historiqueServlet", urlPatterns = {"/historique"})
+public class historiqueServlet extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -39,10 +39,10 @@ public class ConnexionServlet extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet ConnexionServlet</title>");
+            out.println("<title>Servlet historiqueServlet</title>");            
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>Servlet ConnexionServlet at " + request.getContextPath() + "</h1>");
+            out.println("<h1>Servlet historiqueServlet at " + request.getContextPath() + "</h1>");
             out.println("</body>");
             out.println("</html>");
         }
@@ -60,8 +60,12 @@ public class ConnexionServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        //processRequest(request, response);
-        request.getRequestDispatcher("index.jsp").forward(request, response);
+        try {
+            List<histo> hist = ConseillerDao.getHistorique();
+
+        } catch (Exception e) {
+        }
+
     }
 
     /**
@@ -75,30 +79,7 @@ public class ConnexionServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        //processRequest(request, response);
-        String log = request.getParameter("login");
-        String mdp = request.getParameter("mdp");
-
-        try {
-
-            User u = UserDao.getByLoginAndPassword(log, mdp);
-
-            if (u != null) {
-                request.getSession(true).setAttribute("user", u);
-                // remettre en menuAdmin
-                this.getServletContext().getRequestDispatcher("/WEB-INF/menuConseiller.jsp").forward(request, response);
-                //response.sendRedirect("memos");
-            } else {
-                request.setAttribute("msg", "identifiants incorrects!!");
-                this.getServletContext().getRequestDispatcher("/index.jsp").forward(request, response);
-            }
-
-        } catch (Exception e) {
-            PrintWriter out = response.getWriter();
-            out.println("err" + e.getMessage());
-
-        }
-
+        processRequest(request, response);
     }
 
     /**

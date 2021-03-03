@@ -76,9 +76,7 @@ public class InscriptionServlet extends HttpServlet {
             throws ServletException, IOException {
         String nom = request.getParameter("nom");
         String prenom = request.getParameter("prenom");
-
         String login = request.getParameter("login");
-
         String mdp = request.getParameter("mdp");
         //String mdp2 = request.getParameter("mdp2");
 
@@ -90,7 +88,6 @@ public class InscriptionServlet extends HttpServlet {
             PrintWriter out = response.getWriter();
             out.println("Exception :" + e.getMessage());
         }
-
     }
 
     /**
