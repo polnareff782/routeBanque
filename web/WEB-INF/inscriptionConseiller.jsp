@@ -14,7 +14,7 @@
    
     <body>
        <div class="container mt-4">
-            <form action="inscription" method="POST">
+            <form action="InscriptionConseillerServlet" method="POST">
                 <div class="content-login">
                     <div class="card shadow-card">
                         <div class="card-header card-header-back">
@@ -42,7 +42,22 @@
                                     <label for="telephone" class="my-label">Téléphone</label>
                                     <input type="text" id="login" class="form-control" name="telephone">
                                 </div>
-                                
+                                <div class="mb-3">
+                                    <label for="sexe" class="my-label">Sexe</label>
+                                    <input type="text" id="sexe" class="form-control" name="sexe">
+                                </div>
+                                <div class="mb-3">
+                                    <label for="dateNaissance" class="my-label">Date de naissance</label>
+                                    <input type="date" id="dateNaissance" class="form-control" name="dateNaissance">
+                                </div>
+                                <div class="mb-3">
+                                    <label for="email" class="my-label">EMail</label>
+                                    <input type="mail" id="email" class="form-control" name="email">
+                                </div>
+                                <div class="mb-3">
+                                    <label for="adresse" class="my-label">Adresse</label>
+                                    <input type="text" id="sexe" class="form-control" name="adresse">
+                                </div>
                                 <div class="d-grid gap-2">
                                     <button type="submit" class="btn btn-primary btn-block" onclick="location.href='inscription'">Inscription</button>
                                     <button type="button" class="btn btn-success btn-block" onclick="location.href='login'">Se connecter</button>

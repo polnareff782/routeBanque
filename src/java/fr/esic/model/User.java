@@ -2,7 +2,7 @@ package fr.esic.model;
 
 public class User {
 
-    private int id;
+    private int idUtil;
     private String nom;
     private String prenom;
     private String login;
@@ -12,12 +12,23 @@ public class User {
     private String dateNaissance;
     private String mail;
     private String adresse;
+    private int idPerson;
+    private int idRole;
 
     public User() {
     }
 
-    public User(int id, String nom, String prenom, String login, String password, String telephone, String sexe, String dateNaissance, String mail, String adresse) {
-        this.id = id;
+    public User(String nom, String prenom, String telephone, String sexe, String dateNaissance, String mail, String adresse) {
+        this.nom = nom;
+        this.prenom = prenom;
+        this.telephone = telephone;
+        this.sexe = sexe;
+        this.dateNaissance = dateNaissance;
+        this.mail = mail;
+        this.adresse = adresse;
+    }
+
+    public User(String nom, String prenom, String login, String password, String telephone, String sexe, String dateNaissance, String mail, String adresse) {
         this.nom = nom;
         this.prenom = prenom;
         this.login = login;
@@ -29,14 +40,77 @@ public class User {
         this.adresse = adresse;
     }
 
-    public User(String nom, String prenom, String login, String password) {
+    public User(String login, String password, int idPerson, int idRole) {
+        this.login = login;
+        this.password = password;
+        this.idPerson = idPerson;
+        this.idRole = idRole;
+    }
+     
+    
+    
+    public User(int idUtil, String nom, String prenom, String login, String password, String telephone, String sexe, String dateNaissance, String mail, String adresse, int idPerson, int idRole) {
+        this.idUtil = idUtil;
         this.nom = nom;
         this.prenom = prenom;
         this.login = login;
         this.password = password;
+        this.telephone = telephone;
+        this.sexe = sexe;
+        this.dateNaissance = dateNaissance;
+        this.mail = mail;
+        this.adresse = adresse;
+        this.idPerson = idPerson;
+        this.idRole = idRole;
     }
-    
-    
+
+    public User(int idUtil, String login, String password, int idPerson, int idRole) {
+        this.idUtil = idUtil;
+        this.login = login;
+        this.password = password;
+        this.idPerson = idPerson;
+        this.idRole = idRole;
+    }
+
+    public int getIdUtil() {
+        return idUtil;
+    }
+
+    public void setIdUtil(int idUtil) {
+        this.idUtil = idUtil;
+    }
+
+    public String getNom() {
+        return nom;
+    }
+
+    public void setNom(String nom) {
+        this.nom = nom;
+    }
+
+    public String getPrenom() {
+        return prenom;
+    }
+
+    public void setPrenom(String prenom) {
+        this.prenom = prenom;
+    }
+
+    public String getLogin() {
+        return login;
+    }
+
+    public void setLogin(String login) {
+        this.login = login;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
 
     public String getTelephone() {
         return telephone;
@@ -78,46 +152,23 @@ public class User {
         this.adresse = adresse;
     }
 
-   
-
-    public int getId() {
-        return id;
+    public int getIdPerson() {
+        return idPerson;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public void setIdPerson(int idPerson) {
+        this.idPerson = idPerson;
     }
 
-    public String getNom() {
-        return nom;
+    public int getIdRole() {
+        return idRole;
     }
 
-    public void setNom(String nom) {
-        this.nom = nom;
+    public void setIdRole(int idRole) {
+        this.idRole = idRole;
     }
-
-    public String getPrenom() {
-        return prenom;
-    }
-
-    public void setPrenom(String prenom) {
-        this.prenom = prenom;
-    }
-
-    public String getLogin() {
-        return login;
-    }
-
-    public void setLogin(String login) {
-        this.login = login;
-    }
-
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
-    }
+    
+  
+    
 
 }

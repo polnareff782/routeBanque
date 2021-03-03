@@ -1,7 +1,7 @@
 <%-- 
-    Document   : menu
-    Created on : 26 févr. 2021, 10:40:18
-    Author     : polnareff
+    Document   : menuClient
+    Created on : 3 mars 2021, 21:02:06
+    Author     : Nathan Ghozlan
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
@@ -28,22 +28,19 @@
                 <div class="collapse navbar-collapse " id="navbarNav">
                     <ul class="navbar-nav nav-fill w-100">
                         <li class="nav-item active">
-                            <a class="nav-link" href="InscriptionConseillerServlet">Créer un compte conseiller</a>
+                            <a class="nav-link" href="#">Modifier mon profil</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#">Modifier compte conseiller </a>
+                            <a class="nav-link" href="#">Activer/Désactiver carte</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#">Activer/Désactiver compte conseiller</a>
+                            <a class="nav-link" href="#">Consulter solde et opérations </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#">Modifier profil conseiller</a>
+                            <a class="nav-link" href="#">Faire une demande de decouvert </a>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#">Historique des opérations sur les comptes conseiller</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="inscriptionAdmin">Ajouter un compte admin </a>
+                        <li class="nav-item active">
+                            <a class="nav-link" href="#">Contacter conseiller</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="Deco"><span class="material-icons red600">

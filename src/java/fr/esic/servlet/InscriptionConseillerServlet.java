@@ -5,6 +5,9 @@
  */
 package fr.esic.servlet;
 
+import fr.esic.dao.ConseillerDao;
+import fr.esic.dao.UserDao;
+import fr.esic.model.User;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.ServletException;
@@ -37,7 +40,7 @@ public class InscriptionConseillerServlet extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet InscriptionConseillerServlet</title>");            
+            out.println("<title>Servlet InscriptionConseillerServlet</title>");
             out.println("</head>");
             out.println("<body>");
             out.println("<h1>Servlet InscriptionConseillerServlet at " + request.getContextPath() + "</h1>");
@@ -58,7 +61,7 @@ public class InscriptionConseillerServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        request.getRequestDispatcher("/WEB-INF/inscriptionConseiller.jsp").forward(request, response);
     }
 
     /**
@@ -72,7 +75,35 @@ public class InscriptionConseillerServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+
+        String nom = request.getParameter("nom");
+        String prenom = request.getParameter("prenom");
+
+        String telephone = request.getParameter("telephone");
+        String sexe = request.getParameter("sexe");
+        String dateNaiss = request.getParameter("dateNaissance");
+        String email = request.getParameter("email");
+        String adresse = request.getParameter("adresse");
+
+        User u = new User(nom, prenom, telephone, sexe, dateNaiss, email, adresse);
+
+        String login = request.getParameter("login");
+        String password = request.getParameter("mdp");
+        
+        try {
+            int lastId = UserDao.insertPerson(u);
+            u.setIdPerson(lastId);
+            u.setLogin(login);
+            u.setPassword(password);
+            
+            ConseillerDao.insertConseiller(u);
+            
+            request.getRequestDispatcher("index.jsp").forward(request, response);
+        } catch (Exception e) {
+            PrintWriter out = response.getWriter();
+            out.println("Exception :" + e.getMessage());
+        }
+
     }
 
     /**
@@ -83,6 +114,6 @@ public class InscriptionConseillerServlet extends HttpServlet {
     @Override
     public String getServletInfo() {
         return "Short description";
-    }// </editor-fold>
+    }
 
 }

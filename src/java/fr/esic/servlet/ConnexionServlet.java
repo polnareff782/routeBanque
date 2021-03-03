@@ -19,6 +19,7 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author polnareff
  */
+
 @WebServlet(name = "ConnexionServlet", urlPatterns = {"/login"})
 public class ConnexionServlet extends HttpServlet {
 
@@ -86,7 +87,23 @@ public class ConnexionServlet extends HttpServlet {
             if (u != null) {
                 request.getSession(true).setAttribute("user", u);
                 // remettre en menuAdmin
-                this.getServletContext().getRequestDispatcher("/WEB-INF/menuConseiller.jsp").forward(request, response);
+                //this.getServletContext().getRequestDispatcher("/WEB-INF/menuAdmin.jsp").forward(request, response);
+
+
+                switch (u.getIdRole()) {
+                    case 1:
+                        this.getServletContext().getRequestDispatcher("/WEB-INF/homeAdmin.jsp").forward(request, response);
+                        break;
+                    case 2:
+                        this.getServletContext().getRequestDispatcher("/WEB-INF/homeConseiller.jsp").forward(request, response);
+                        break;
+                    case 3:
+                        this.getServletContext().getRequestDispatcher("/WEB-INF/homeClient.jsp").forward(request, response);
+                        break;
+                    default:
+                        break;
+                }
+
                 //response.sendRedirect("memos");
             } else {
                 request.setAttribute("msg", "identifiants incorrects!!");
