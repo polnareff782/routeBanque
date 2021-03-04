@@ -2,7 +2,9 @@
 package fr.esic.servlet;
 
 import fr.esic.dao.ClientDao;
-import fr.esic.model.Client;
+import fr.esic.dao.ConseillerDao;
+import fr.esic.dao.UserDao;
+import fr.esic.model.User;
 import java.io.BufferedInputStream;
 import java.io.BufferedOutputStream;
 import java.io.File;
@@ -46,8 +48,8 @@ public class InscriptionClient extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-                   this.getServletContext().getRequestDispatcher("/Connexion.jsp").forward(request, response);
-
+                   //this.getServletContext().getRequestDispatcher("/Connexion.jsp").forward(request, response);
+request.getRequestDispatcher("/WEB-INF/inscriptionClient.jsp").forward(request, response);
        
     }
 
@@ -55,17 +57,35 @@ public class InscriptionClient extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        
-        
+      
         String nom = request.getParameter("nom");
         String prenom = request.getParameter("prenom");
-        String log = request.getParameter("login");
-        String mdp = request.getParameter("password");
+        String login = request.getParameter("login");
+        String password = request.getParameter("password");        
         String sexe=request.getParameter("sexe");
-        String tel= request.getParameter("numtel");
-        String date=request.getParameter("datenaissance");
-        String email=request.getParameter("Email");
-        String adresse=request.getParameter("adresse");
+        String telephone = request.getParameter("numtel");
+        String dateNaiss = request.getParameter("dateNaissance");
+        String email = request.getParameter("Email");
+        String adresse = request.getParameter("adresse");
+
+        User u = new User(nom, prenom, telephone, sexe, dateNaiss, email, adresse);
+
+       
+        
+        try {
+            int lastId = UserDao.insertPerson(u);
+            u.setIdPerson(lastId);
+            u.setLogin(login);
+            u.setPassword(password);
+            
+            ClientDao.insertClient(u);
+            
+            request.getRequestDispatcher("index.jsp").forward(request, response);
+        } catch (Exception e) {
+            PrintWriter out = response.getWriter();
+            out.println("Exception :" + e.getMessage());
+        }
+        
         
         
         /*
@@ -81,7 +101,7 @@ public class InscriptionClient extends HttpServlet {
         ecrireFichier(part,nomfichier,chemin);
         request.setAttribute(nomchamp,nomfichier);
         }
-*/
+
        Client c = new Client (nom, prenom,tel,sexe,date,email,adresse);
       // Utilisateur u = new Utilisateur (log,mdp); 
        try {        
@@ -147,5 +167,5 @@ public class InscriptionClient extends HttpServlet {
         return null;
     }   
 */
-}
+    }}
 

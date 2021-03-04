@@ -1,6 +1,7 @@
 package fr.esic.dao;
 
-import fr.esic.model.Client;
+
+import fr.esic.model.User;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -11,10 +12,10 @@ import java.util.List;
 
 public class ClientDao {
 
-    public static Client getByLoginAndPassword(String login, String password) throws SQLException {
+    public static User getClientByLoginAndPassword(String login, String password) throws SQLException {
 
-        Client c = null;
-        String sql = "select * from utilisateur where login=? and mdp=? ";
+      User c = null;
+        String sql = "select * from utilisateur where login=? and mdp=? and idrole=3 ";
         Connection conn = AccessBd.getConnection();
 
         PreparedStatement prepare = conn.prepareStatement(sql);
@@ -23,7 +24,7 @@ public class ClientDao {
         ResultSet rs = prepare.executeQuery();
 
         if (rs.next()) {
-            c = new Client();
+            c = new User();
             
             //c.setId(rs.getInt("idutilisateur"));
             c.setLogin(rs.getString("login"));
@@ -35,46 +36,23 @@ public class ClientDao {
         return c;
     }
 
-    public static void insertPerson(Client c) throws SQLException {
-        String sql = "insert into person(nom,prenom,telephone,sexe,dateNaissance,email,adresse) values(?,?,?,?,?,?,?)";
-
+    public static void insertClient(User u) throws SQLException {
+        String sql = "INSERT INTO utilisateur (login, mdp, idperson, idrole) VALUES (?, ?, ?, 3)";
         Connection connexion = AccessBd.getConnection();
-        PreparedStatement prepare = connexion.prepareCall(sql);
-        prepare.setString(1, c.getNom());
-        prepare.setString(2, c.getPrenom());
+        PreparedStatement prepare = connexion.prepareStatement(sql);
+        prepare.setString(1, u.getLogin());
+        prepare.setString(2, u.getPassword());
+        prepare.setInt(3, u.getIdPerson());
         
-        prepare.setString(3, c.getTelephone());
-        prepare.setString(4, c.getSex());
-        prepare.setString(5, c.getDatenaissance());
-        prepare.setString(6, c.getEmail());
-        prepare.setString(7, c.getAdresse());
-
+        
         prepare.execute();
     }
 
     
 
-    public static List<Client> getAll() throws SQLException {
-        List<Client> clients = new ArrayList<>();
-        String sql = "select * from person";
+    /*
 
-        Connection connexion = AccessBd.getConnection();
-        Statement ST = connexion.createStatement();
-        ResultSet rs = ST.executeQuery(sql);
-
-        while (rs.next()) {
-            Client c = new Client();
-            c.setId(rs.getInt("idperson"));
-            c.setPrenom(rs.getString("nom"));
-            c.setNom(rs.getString("prenom"));
-            c.setLogin(rs.getString("login"));
-
-            clients.add(c);
-        }
-        return clients;
-    }
-
-    public void ModifierClient(Client c) {
+    public void ModifierUser(User c) {
         Connection con = null;
         PreparedStatement st = null;
         ResultSet rs = null;
@@ -95,9 +73,9 @@ public class ClientDao {
         }
     }
 
-    public static Client getEmail(String login, String password) throws SQLException {
+    public static User getEmail(String login, String password) throws SQLException {
 
-        Client c = null;
+        User c = null;
         String sql = "SELECT p.email FROM banque.person p inner join banque.utilisateur u Where p.idperson = u.idutilisateur and u.idrole = 2";
         Connection conn = AccessBd.getConnection();
 
@@ -107,13 +85,13 @@ public class ClientDao {
         ResultSet rs = prepare.executeQuery();
 
         if (rs.next()) {
-            c = new Client();
+            c = new User();
 
             c.setEmail(rs.getString("email"));
         }
 
         return c;
     }
-
+*/
 }
 
