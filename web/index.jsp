@@ -39,7 +39,7 @@
                                 </div>
                                 <div class="d-grid gap-2">
                                     <button type="submit" class="btn btn-success btn-block">Valider</button>
-                                   <!-- <button type="button" class="btn btn-primary btn-block" onclick="location.href='inscription'">Inscription</button> -->
+                                   <!--<button type="button" class="btn btn-primary btn-block" onclick="location.href='inscription'">Inscription</button> -->
                                 </div>
 
                                 <p class="text-center text-danger" id="msg"> ${msg} </p>
