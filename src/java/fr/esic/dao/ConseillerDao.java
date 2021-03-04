@@ -13,19 +13,19 @@ import java.sql.SQLException;
 
 public class ConseillerDao {
     
-    public static void insertConseiller(User u) throws SQLException {
+    public static void insertConseiller(User c) throws SQLException {
         String sql = "INSERT INTO utilisateur (login, mdp, idperson, idrole) VALUES (?, ?, ?, 2)";
         Connection connexion = AccessBd.getConnection();
         PreparedStatement prepare = connexion.prepareStatement(sql);
-        prepare.setString(1, u.getLogin());
-        prepare.setString(2, u.getPassword());
-        prepare.setInt(3, u.getIdPerson());
+        prepare.setString(1, c.getLogin());
+        prepare.setString(2, c.getMdp());
+        prepare.setInt(3, c.getPerson().getId());
         prepare.execute();
     }
     
     
     
-    public static User getConseillerByLoginAndPassword(String log, String mdp) throws SQLException {
+   /* public static User getConseillerByLoginAndPassword(String log, String mdp) throws SQLException {
         User u = null;
         String sql = "SELECT * FROM utilisateur WHERE login=? AND mdp=? WHERE idrole=2";
         Connection connexion = AccessBd.getConnection();
@@ -46,6 +46,6 @@ public class ConseillerDao {
         }
 
         return u;
-    }
+    }*/
     
 }

@@ -16,8 +16,8 @@ import java.sql.SQLException;
  * @author dylan55
  */
 public class AdminDao {
-    
-    
+
+    /*Pas besoin. une connexion d'un user doit ou contient toutes les info du user peu importe le role
       public static User getAdminByLoginAndPassword(String log, String mdp) throws SQLException {
         User u = null;
         String sql = "SELECT * FROM utilisateur WHERE login=? AND mdp=? WHERE idrole=1";
@@ -39,15 +39,14 @@ public class AdminDao {
         }
 
         return u;
-    }
-    
-      public static void insertAdmin(User u) throws SQLException {
+    }*/
+    public static void insertAdmin(User admin) throws SQLException {
         String sql = "INSERT INTO utilisateur (login, mdp, idperson, idrole) VALUES (?, ?, ?, 1)";
         Connection connexion = AccessBd.getConnection();
         PreparedStatement prepare = connexion.prepareStatement(sql);
-        prepare.setString(1, u.getLogin());
-        prepare.setString(2, u.getPassword());
-        prepare.setInt(3, u.getIdPerson());
+        prepare.setString(1, admin.getLogin());
+        prepare.setString(2, admin.getMdp());
+        prepare.setInt(3, admin.getPerson().getId());
         prepare.execute();
     }
 }

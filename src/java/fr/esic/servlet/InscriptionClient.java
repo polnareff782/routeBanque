@@ -1,9 +1,10 @@
-
 package fr.esic.servlet;
 
 import fr.esic.dao.ClientDao;
 import fr.esic.dao.ConseillerDao;
+import fr.esic.dao.PersonDao;
 import fr.esic.dao.UserDao;
+import fr.esic.model.Person;
 import fr.esic.model.User;
 import java.io.BufferedInputStream;
 import java.io.BufferedOutputStream;
@@ -24,9 +25,9 @@ import static sun.security.jgss.GSSUtil.login;
 @WebServlet(name = "InscriptionClient", urlPatterns = {"/InscriptionClient"})
 public class InscriptionClient extends HttpServlet {
 
-    public static final int taille_tampon=10240;//tampon pour copier les fichiers depuis le ficier tempor
-    public static final String chemin="/Users/marye/fichiertemp/fichier/";
-    
+    public static final int taille_tampon = 10240;//tampon pour copier les fichiers depuis le ficier tempor
+    public static final String chemin = "/Users/marye/fichiertemp/fichier/";
+
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
@@ -35,7 +36,7 @@ public class InscriptionClient extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet ConnexionClient</title>");            
+            out.println("<title>Servlet ConnexionClient</title>");
             out.println("</head>");
             out.println("<body>");
             out.println("<h1>Servlet ConnexionClient at " + request.getContextPath() + "</h1>");
@@ -44,51 +45,55 @@ public class InscriptionClient extends HttpServlet {
         }
     }
 
-    
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-                   //this.getServletContext().getRequestDispatcher("/Connexion.jsp").forward(request, response);
-request.getRequestDispatcher("/WEB-INF/inscriptionClient.jsp").forward(request, response);
-       
+        //this.getServletContext().getRequestDispatcher("/Connexion.jsp").forward(request, response);
+        request.getRequestDispatcher("/WEB-INF/inscriptionClient.jsp").forward(request, response);
+
     }
 
-   
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-      
+
         String nom = request.getParameter("nom");
         String prenom = request.getParameter("prenom");
-        String login = request.getParameter("login");
-        String password = request.getParameter("password");        
-        String sexe=request.getParameter("sexe");
-        String telephone = request.getParameter("numtel");
+
+        String telephone = request.getParameter("telephone");
+        String sexe = request.getParameter("sexe");
         String dateNaiss = request.getParameter("dateNaissance");
-        String email = request.getParameter("Email");
+        String email = request.getParameter("email");
         String adresse = request.getParameter("adresse");
 
-        User u = new User(nom, prenom, telephone, sexe, dateNaiss, email, adresse);
+        String login = request.getParameter("login");
+        String password = request.getParameter("mdp");
 
-       
-        
+        Person p = new Person(nom, prenom, telephone, sexe, dateNaiss, email, adresse);
+
         try {
-            int lastId = UserDao.insertPerson(u);
+            /* int lastId = UserDao.insertPerson(u);
             u.setIdPerson(lastId);
             u.setLogin(login);
             u.setPassword(password);
-            
-            ClientDao.insertClient(u);
-            
+            ClientDao.insertClient(u);*/
+
+            PersonDao.insertPerson(p);
+            Person pe = PersonDao.getPersonByEmail(email);
+
+            User c = new User(login, password, pe);
+
+            ClientDao.insertClient(c);
+
             request.getRequestDispatcher("index.jsp").forward(request, response);
         } catch (Exception e) {
             PrintWriter out = response.getWriter();
             out.println("Exception :" + e.getMessage());
         }
-        
-        
-        
-        /*
+
+    }
+
+    /*
         String description = request.getParameter("description");
         request.setAttribute("description", description );
         
@@ -166,6 +171,5 @@ request.getRequestDispatcher("/WEB-INF/inscriptionClient.jsp").forward(request, 
         }
         return null;
     }   
-*/
-    }}
-
+     */
+}

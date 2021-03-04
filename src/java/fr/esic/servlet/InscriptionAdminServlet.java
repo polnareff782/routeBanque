@@ -6,7 +6,9 @@
 package fr.esic.servlet;
 
 import fr.esic.dao.AdminDao;
+import fr.esic.dao.PersonDao;
 import fr.esic.dao.UserDao;
+import fr.esic.model.Person;
 import fr.esic.model.User;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -84,18 +86,23 @@ public class InscriptionAdminServlet extends HttpServlet {
         String email = request.getParameter("email");
         String adresse = request.getParameter("adresse");
 
-        User u = new User(nom, prenom, telephone, sexe, dateNaiss, email, adresse);
-
+        
         String login = request.getParameter("login");
         String password = request.getParameter("mdp");
+
+        Person p = new Person(nom, prenom, telephone, sexe, dateNaiss, email, adresse);
         
         try {
-            int lastId = UserDao.insertPerson(u);
+           /* int lastId = UserDao.insertPerson(u);
             u.setIdPerson(lastId);
             u.setLogin(login);
-            u.setPassword(password);
+            u.setPassword(password);*/
+            PersonDao.insertPerson(p);
+            Person pe = PersonDao.getPersonByEmail(email);
+
+            User admin = new User(login, password, pe);
             
-            AdminDao.insertAdmin(u);
+            AdminDao.insertAdmin(admin);
             
             request.getRequestDispatcher("index.jsp").forward(request, response);
         } catch (Exception e) {

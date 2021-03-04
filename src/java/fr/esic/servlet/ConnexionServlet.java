@@ -19,7 +19,6 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author polnareff
  */
-
 @WebServlet(name = "ConnexionServlet", urlPatterns = {"/login"})
 public class ConnexionServlet extends HttpServlet {
 
@@ -89,8 +88,7 @@ public class ConnexionServlet extends HttpServlet {
                 // remettre en menuAdmin
                 //this.getServletContext().getRequestDispatcher("/WEB-INF/menuAdmin.jsp").forward(request, response);
 
-
-                switch (u.getIdRole()) {
+                switch (u.getRole().getId()) {
                     case 1:
                         this.getServletContext().getRequestDispatcher("/WEB-INF/homeAdmin.jsp").forward(request, response);
                         break;

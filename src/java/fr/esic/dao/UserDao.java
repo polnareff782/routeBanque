@@ -1,5 +1,7 @@
 package fr.esic.dao;
 
+import fr.esic.model.Person;
+import fr.esic.model.Role;
 import fr.esic.model.User;
 
 import java.sql.*;
@@ -7,31 +9,38 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class UserDao {
-
+    
     public static User getByLoginAndPassword(String log, String mdp) throws SQLException {
         User u = null;
         String sql = "SELECT * FROM utilisateur WHERE login=? AND mdp=?";
         Connection connexion = AccessBd.getConnection();
-
+        
         PreparedStatement prepare = connexion.prepareStatement(sql);
         prepare.setString(1, log);
         prepare.setString(2, mdp);
-
+        
         ResultSet rs = prepare.executeQuery();
-
+        
         if (rs.next()) {
             u = new User();
-            u.setIdUtil(rs.getInt("idutilisateur"));
+            u.setId(rs.getInt("idutilisateur"));
             u.setLogin(rs.getString("login"));
-            u.setPassword(rs.getString("mdp"));
-            u.setIdPerson(rs.getInt("idperson"));
-            u.setIdRole(rs.getInt("idrole"));
+            u.setMdp(rs.getString("mdp"));
+            
+            Person p = new Person();
+            p.setId(rs.getInt("idperson"));
+            
+            u.setPerson(p);
+            
+            Role r = new Role();
+            r.setId(rs.getInt("idrole"));
+            u.setRole(r);
         }
-
+        
         return u;
     }
 
-    public static int insertPerson(User u) throws SQLException {
+    /* public static int insertPerson(User u) throws SQLException {
         String sql = "INSERT INTO person (nom, prenom, telephone, sexe, dateNaissance, eMail, adresse) VALUES (?,?,?,?,?,?,?)";
         Connection connexion = AccessBd.getConnection();
         PreparedStatement prepare = connexion.prepareStatement(sql);
@@ -47,11 +56,8 @@ public class UserDao {
         ResultSet RSid = prepare.getGeneratedKeys();
         RSid.next();
         return RSid.getInt(1);
-    }
-
-
-    
-/*
+    }*/
+ /*
     public static List<User> getAll() throws SQLException {
 
         List<User> users = new ArrayList<>();
@@ -76,6 +82,5 @@ public class UserDao {
         return users;
     }
 
-*/
-
+     */
 }

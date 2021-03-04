@@ -1,6 +1,5 @@
 package fr.esic.dao;
 
-
 import fr.esic.model.User;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -12,10 +11,10 @@ import java.util.List;
 
 public class ClientDao {
 
-    public static User getClientByLoginAndPassword(String login, String password) throws SQLException {
+    /*  public static User getClientByLoginAndPassword(String login, String password) throws SQLException {
 
-      User c = null;
-        String sql = "select * from utilisateur where login=? and mdp=? and idrole=3 ";
+        User u = null;
+        String sql = "select * from utilisateur where login=? and mdp=? and idrole=3";
         Connection conn = AccessBd.getConnection();
 
         PreparedStatement prepare = conn.prepareStatement(sql);
@@ -24,31 +23,27 @@ public class ClientDao {
         ResultSet rs = prepare.executeQuery();
 
         if (rs.next()) {
-            c = new User();
-            
+            u = new User();
+
             //c.setId(rs.getInt("idutilisateur"));
-            c.setLogin(rs.getString("login"));
-            c.setPassword(rs.getString("mdp"));
+            u.setLogin(rs.getString("login"));
+            u.setMdp(rs.getString("mdp"));
             //c.setId(rs.getInt("idperson"));
             //c.setId(rs.getInt("idrole"));
         }
 
-        return c;
-    }
-
-    public static void insertClient(User u) throws SQLException {
+        return u;
+    }*/
+    public static void insertClient(User c) throws SQLException {
         String sql = "INSERT INTO utilisateur (login, mdp, idperson, idrole) VALUES (?, ?, ?, 3)";
         Connection connexion = AccessBd.getConnection();
         PreparedStatement prepare = connexion.prepareStatement(sql);
-        prepare.setString(1, u.getLogin());
-        prepare.setString(2, u.getPassword());
-        prepare.setInt(3, u.getIdPerson());
-        
-        
+        prepare.setString(1, c.getLogin());
+        prepare.setString(2, c.getMdp());
+        prepare.setInt(3, c.getPerson().getId());
+
         prepare.execute();
     }
-
-    
 
     /*
 
@@ -92,6 +87,5 @@ public class ClientDao {
 
         return c;
     }
-*/
+     */
 }
-
