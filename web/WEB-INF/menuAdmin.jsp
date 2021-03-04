@@ -21,7 +21,7 @@
         <div>
 
             <nav class="navbar navbar-expand-lg navbar-light bg-light">
-                <a class="navbar-brand" href="#">CDA 2020</a>
+                <a class="navbar-brand" href="AccueilServlet">CDA 2020</a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
@@ -37,7 +37,7 @@
                             <a class="nav-link" href="#">Activer/Désactiver compte conseiller</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#">Modifier profil conseiller</a>
+                            <a class="nav-link" href="ModifProfilCons">Modifier profil conseiller</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="#">Historique des opérations sur les comptes conseiller</a>
@@ -54,6 +54,9 @@
                     </ul>
                 </div>
             </nav>
+            
+            
+
 
         </div>
     </body>

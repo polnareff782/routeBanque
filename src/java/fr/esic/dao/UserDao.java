@@ -39,6 +39,27 @@ public class UserDao {
         
         return u;
     }
+    
+    public static User getUserById(String id) throws SQLException {
+
+        User p = null;
+        String sql = "select * from utilisateur where idperson=?";
+        Connection conn = AccessBd.getConnection();
+
+        PreparedStatement prepare = conn.prepareStatement(sql);
+        prepare.setString(1, id);
+        ResultSet rs = prepare.executeQuery();
+
+        if (rs.next()) {
+            p = new User();
+
+            p.setId(rs.getInt("idperson"));
+            p.setLogin(rs.getString("login"));
+            p.setMdp(rs.getString("mdp"));
+            
+        }
+        return p;
+    }
 
     /* public static int insertPerson(User u) throws SQLException {
         String sql = "INSERT INTO person (nom, prenom, telephone, sexe, dateNaissance, eMail, adresse) VALUES (?,?,?,?,?,?,?)";
@@ -57,12 +78,12 @@ public class UserDao {
         RSid.next();
         return RSid.getInt(1);
     }*/
- /*
+ 
     public static List<User> getAll() throws SQLException {
 
         List<User> users = new ArrayList<>();
 
-        String sql = "SELECT * FROM person";
+        String sql = "SELECT * FROM utilisateur";
 
         Connection connexion = AccessBd.getConnection();
 
@@ -73,14 +94,13 @@ public class UserDao {
             User u = new User();
 
             u.setId(rs.getInt("idperson"));
-            u.setNom(rs.getString("nom"));
-            u.setPrenom(rs.getString("prenom"));
             u.setLogin(rs.getString("login"));
-            u.setPassword(rs.getString("mdp"));
+            u.setMdp(rs.getString("mdp"));
+            
             users.add(u);
         }
         return users;
     }
 
-     */
+     
 }

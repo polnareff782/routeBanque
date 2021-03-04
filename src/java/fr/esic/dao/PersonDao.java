@@ -42,6 +42,31 @@ public class PersonDao {
         }
         return p;
     }
+    
+    public static Person getPersonById(String id) throws SQLException {
+
+        Person p = null;
+        String sql = "select * from person where idperson=?";
+        Connection conn = AccessBd.getConnection();
+
+        PreparedStatement prepare = conn.prepareStatement(sql);
+        prepare.setString(1, id);
+        ResultSet rs = prepare.executeQuery();
+
+        if (rs.next()) {
+            p = new Person();
+
+            p.setId(rs.getInt("idperson"));
+            p.setNom(rs.getString("nom"));
+            p.setPrenom(rs.getString("prenom"));
+            p.setSexe(rs.getString("sexe"));
+            p.setTelephone(rs.getString("telephone"));
+            p.setEmail(rs.getString("email"));
+            p.setAddress(rs.getString("adresse"));
+            p.setDateNaissance(rs.getString("dateNaissance"));
+        }
+        return p;
+    }
 
     public static void insertPerson(Person p) throws SQLException {
         String sql = "INSERT INTO person (nom, prenom, telephone, sexe, dateNaissance, email, adresse) VALUES (?,?,?,?,?,?,?)";

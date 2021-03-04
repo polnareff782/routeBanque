@@ -5,11 +5,15 @@
  */
 package fr.esic.dao;
 
+import fr.esic.model.Person;
 import fr.esic.model.User;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.List;
 
 public class ConseillerDao {
     
@@ -23,6 +27,28 @@ public class ConseillerDao {
         prepare.execute();
     }
     
+    
+    public static List<User> getAllConseiller() throws SQLException {
+
+        List<User> users = new ArrayList<>();
+
+        String sql = "SELECT * FROM utilisateur WHERE idrole=2";
+
+        Connection connexion = AccessBd.getConnection();
+
+        Statement requete = connexion.createStatement();
+
+        ResultSet rs = requete.executeQuery(sql);
+        while (rs.next()) {
+            User p = new User();
+
+            p.setId(rs.getInt("idperson"));
+            p.setLogin(rs.getString("login"));
+            p.setMdp(rs.getString("mdp"));
+            users.add(p);
+        }
+        return users;
+    }
     
     
    /* public static User getConseillerByLoginAndPassword(String log, String mdp) throws SQLException {
