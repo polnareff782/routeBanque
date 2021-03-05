@@ -139,7 +139,7 @@ public class CompteDao {
        }
             
            public static void DesactiverCompte (int numcarte) throws SQLException{
-           String sql ="Update compte set etatcarte=0 WHERE nucarte=?";
+           String sql ="Update compte set etatcarte=0 WHERE numcarte=?";
            Connection connexion = AccessBd.getConnection();
            PreparedStatement prepare = connexion.prepareStatement(sql);
            prepare.setInt(1, numcarte);

@@ -11,6 +11,9 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  *
@@ -42,7 +45,7 @@ public class PersonDao {
         }
         return p;
     }
-    
+
     public static Person getPersonById(String id) throws SQLException {
 
         Person p = null;
@@ -80,9 +83,38 @@ public class PersonDao {
         prepare.setString(6, p.getEmail());
         prepare.setString(7, p.getAddress());
         prepare.execute();
-       /* ResultSet RSid = prepare.getGeneratedKeys();
+        /* ResultSet RSid = prepare.getGeneratedKeys();
         RSid.next();
         return RSid.getInt(1);*/
     }
 
+    public static List<Person> getAllPerson() throws SQLException {
+
+        List<Person> persons = new ArrayList<>();
+
+        String sql = "SELECT * FROM person";
+
+        Connection connexion = AccessBd.getConnection();
+
+        Statement requete = connexion.createStatement();
+
+        ResultSet rs = requete.executeQuery(sql);
+        while (rs.next()) {
+            Person u = new Person();
+
+            u.setId(rs.getInt("idperson"));
+            u.setNom(rs.getString("nom"));
+            u.setPrenom(rs.getString("prenom"));
+            u.setTelephone(rs.getString("telephone"));
+
+            u.setSexe(rs.getString("sexe"));
+
+           // u.setDateNaissance(rs.getString("dateNaissance"));
+            u.setEmail(rs.getString("email"));
+            u.setAddress(rs.getString("adresse"));
+
+            persons.add(u);
+        }
+        return persons;
+    }
 }

@@ -1,18 +1,16 @@
 <%-- 
-    Document   : Emprunter
-    Created on : Mar 5, 2021, 12:42:43 AM
+    Document   : NosOffres
+    Created on : Mar 5, 2021, 9:54:14 AM
     Author     : marye
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-<!DOCTYPE html>
-<html>
+     <%@ include file="EnteteClient.jsp"%><html>
     <head>
-             <%@ include file="EnteteClient.jsp"%>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>JSP Page</title>
     </head>
     <body>
-        <h1>Hello World!emprunt</h1>
+        <h1>Hello World NosOffres!</h1>
     </body>
 </html>

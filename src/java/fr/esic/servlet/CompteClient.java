@@ -16,7 +16,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-
 /**
  *
  * @author marye
@@ -62,9 +61,7 @@ public class CompteClient extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-                HttpSession session = request.getSession(true);
-
-        User user = (User) session.getAttribute("user");
+      /*User user =(User) session.getAttribute("user");
                 if (user != null) {
                     try {
        request.getRequestDispatcher("WEB-INF/compte.jsp").forward(request, response);
@@ -77,6 +74,7 @@ public class CompteClient extends HttpServlet {
             request.setAttribute("msg", "tu est pas connecter");
             request.getRequestDispatcher("index.jsp").forward(request, response);
         }
+        */
     }
 
  
@@ -88,30 +86,32 @@ public class CompteClient extends HttpServlet {
         String solde = request.getParameter("solde");
         int id =Integer.parseInt(request.getParameter("id"));
                 if (user != null) {
-                    try {
-                        //CompteDao.InsertConseiller(solde, id);
+                   /* try {
+                        CompteDao.InsertConseiller(solde, id);
                            request.getRequestDispatcher("WEB-INF/compte.jsp").forward(request, response);
 
                } catch (Exception e) {
              PrintWriter out = response.getWriter();
              out.println("expt :"+e.getMessage());
-        }
+        }*/
             
         } else {
             request.setAttribute("msg", "tu est pas connecter");
             request.getRequestDispatcher("index.jsp").forward(request, response);
         }
     }
-    }
+    //}
 
     /**
      * Returns a short description of the servlet.
      *
      * @return a String containing servlet description
-     
+     */
+
+
     @Override
     public String getServletInfo() {
         return "Short description";
     }
 
-}*/
+}

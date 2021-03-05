@@ -87,7 +87,10 @@ public class ModifProfilConseillerServelt extends HttpServlet {
          if (user != null) {
                     try {
         List<User> users = ConseillerDao.getAllConseiller();
+        List<Person> persons = PersonDao.getAllPerson();
+
         request.setAttribute("users", users);
+        request.setAttribute("persons", persons);
        request.getRequestDispatcher("WEB-INF/modifProfilConseiller.jsp").forward(request, response);
                } catch (Exception e) {
              PrintWriter out = response.getWriter();
