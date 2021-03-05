@@ -30,6 +30,7 @@ public class UserDao {
             Person p = new Person();
             p.setId(rs.getInt("idperson"));
             
+            
             u.setPerson(p);
             
             Role r = new Role();
@@ -102,5 +103,47 @@ public class UserDao {
         return users;
     }
 
+    public static void ActiverClient (String log) throws SQLException{
+           String sql ="Update person set etat=1 WHERE login=?";
+           Connection connexion = AccessBd.getConnection();
+           PreparedStatement prepare = connexion.prepareStatement(sql);
+           prepare.setString(1, log);
+           prepare.execute();
+       }
+           public static void DesactiverClient (String log) throws SQLException{
+           String sql ="Update person set etat=0 WHERE login=?";
+           Connection connexion = AccessBd.getConnection();
+           PreparedStatement prepare = connexion.prepareStatement(sql);
+           prepare.setString(1, log);
+           prepare.execute();   
+       }
+           
+           public static User AfficheUser (int id) throws SQLException {    
+              User u = null;
+              Person p = null;
+          String  sql = "select * from person where idperson=?"; 
+          String  sqla = "select * from person where idperson=?";       
+
+         Connection connexion = AccessBd.getConnection();
+         PreparedStatement prepare = connexion.prepareStatement(sql);
+         PreparedStatement preparer = connexion.prepareStatement(sqla);
+         
+         prepare.setInt(1,id);
+   
+        ResultSet rs = prepare.executeQuery();
+        
+        if(rs.next()){
+            u = new User();
+            p = new Person();
+            p.setId(rs.getInt("idperson"));
+            p.setNom(rs.getString("nom"));
+            p.setPrenom(rs.getString("prenom"));
+            u.setLogin(rs.getString("login"));
+            u.setMdp(rs.getString("mdp"));
+            
+        }
+        
+        return u;
+    }
      
 }

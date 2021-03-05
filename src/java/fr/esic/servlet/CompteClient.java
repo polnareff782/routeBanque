@@ -16,6 +16,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+
 /**
  *
  * @author marye
@@ -61,7 +62,9 @@ public class CompteClient extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-      User user =(User) session.getAttribute("user");
+                HttpSession session = request.getSession(true);
+
+        User user = (User) session.getAttribute("user");
                 if (user != null) {
                     try {
        request.getRequestDispatcher("WEB-INF/compte.jsp").forward(request, response);
@@ -86,7 +89,7 @@ public class CompteClient extends HttpServlet {
         int id =Integer.parseInt(request.getParameter("id"));
                 if (user != null) {
                     try {
-                        CompteDao.InsertConseiller(solde, id);
+                        //CompteDao.InsertConseiller(solde, id);
                            request.getRequestDispatcher("WEB-INF/compte.jsp").forward(request, response);
 
                } catch (Exception e) {
@@ -105,10 +108,10 @@ public class CompteClient extends HttpServlet {
      * Returns a short description of the servlet.
      *
      * @return a String containing servlet description
-     */
+     
     @Override
     public String getServletInfo() {
         return "Short description";
     }
 
-}
+}*/
