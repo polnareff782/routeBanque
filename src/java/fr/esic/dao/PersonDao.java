@@ -5,6 +5,7 @@
  */
 package fr.esic.dao;
 
+import fr.esic.model.Compte;
 import fr.esic.model.Person;
 import fr.esic.model.User;
 import java.sql.Connection;
@@ -109,7 +110,7 @@ public class PersonDao {
 
             u.setSexe(rs.getString("sexe"));
 
-           //u.setDateNaissance(rs.getString("dateNaissance"));
+            //u.setDateNaissance(rs.getString("dateNaissance"));
             u.setEmail(rs.getString("email"));
             u.setAddress(rs.getString("adresse"));
 
@@ -117,4 +118,40 @@ public class PersonDao {
         }
         return persons;
     }
+
+    public static List<Person> getAllClient() throws SQLException {
+
+        List<Person> persons = new ArrayList<>();
+
+        String sql = "SELECT p.idperson, p.nom, p.prenom, p.email, p.adresse, u.login, c.solde, c.numCp, c.etat FROM person p INNER JOIN utilisateur u ON u.idperson = p.idperson INNER JOIN compte c ON p.idperson = u.idperson AND p.idperson = c.person_idperson WHERE idRole = 3";
+
+        Connection connexion = AccessBd.getConnection();
+
+        Statement requete = connexion.createStatement();
+
+        ResultSet rs = requete.executeQuery(sql);
+        while (rs.next()) {
+            Person u = new Person();
+            Compte c = new Compte();
+            User a = new User();
+
+            u.setId(rs.getInt("idperson"));
+            u.setNom(rs.getString("nom"));
+            u.setPrenom(rs.getString("prenom"));
+            u.setTelephone(rs.getString("telephone"));
+            u.setId(rs.getInt("idperson"));
+            u.setSexe(rs.getString("sexe"));
+            c.setSolde(rs.getString("solde"));
+            a.setLogin(rs.getString("login"));
+            c.setNumcompte(rs.getString("numCp"));
+            c.setEtatcarte(rs.getBoolean("etat"));
+            u.setEmail(rs.getString("email"));
+            u.setAddress(rs.getString("adresse"));
+            a.setLogin(rs.getString("login"));
+
+            persons.add(u);
+        }
+        return persons;
+    }
+
 }
