@@ -18,8 +18,9 @@
         <title>JSP Page</title>
     </head>
     <body>
+        <div class="container">
 
-        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+            <nav class="navbar navbar-expand-lg navbar-light bg-light">
                 <a class="navbar-brand" href="#">CDA 2020</a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
@@ -40,44 +41,42 @@
             </nav>
 
 
-        <h1>Bonjour <span>${user.login}</span> !</h1><br>
-        <h5>Listes des conseillers:</h5>
-
-        <table class="table">
-            <thead>
-                <tr class="table-active">
-                    <th>ID</th>
-                    <th>LOGIN</th>
-                    <th>PASSWORD</th>
-                    <th>Nom</th>                    
-                    <th>MODIFICATIONS PROFILS</th>
-                </tr>
-            </thead>
-            <tbody>
-                <c:forEach items="${users}" var="m">
-                    <tr style="border: 1px solid black;">
-                        <td>${m.id}</td>
-                        <td>${m.login}</td>
-                        <td>${m.mdp}</td>
-                        
-                        <td><button  type="submit"  onclick="location.href = 'ModifProfilCons?id=${m.id}'" class="btn btn-outline-success" >Modifier Infos Profil</button> </td>
+            <h1>Bonjour <span>${user.login}</span> !</h1><br>
+            <h5>Listes des conseillers:</h5>
+            <table class="table">
+                <thead>
+                    <tr class="table-active">
+                        <th>ID</th>
+                        <th>LOGIN</th>
+                        <th>PASSWORD</th>
+                        <th>Nom</th>                    
+                        <th>prenom</th>                    
+                        <th>adresse</th>                    
+                        <th>MODIFICATIONS PROFILS</th>
                     </tr>
-                </c:forEach>
-                    <c:forEach items="${persons}" var="p">
-                    <tr style="border: 1px solid black;">
-                        
-                        <td>${p.nom}</td>
-                         <td>${p.prenom}</td>
-                        <td>${p.telephone}</td>
-                        <td>${p.sexe}</td>
-                         <td>${p.email}</td>
-                           <td>${p.address}</td>
-                   
-                    </tr>
-                </c:forEach>
-            </tbody>
-        </table>
+                </thead>
+                <tbody>
 
+                    <c:forEach items="${users}" var="u">
+
+                        <tr style="border: 1px solid black;">
+                            <td>${u.id}</td>
+                            <td>${u.login}</td>
+                            <td>${u.mdp}</td>
+                            <td>${u.person.nom}</td>
+                            <td>${u.person.prenom}</td>
+                            <td>${u.person.address}</td>
+                    <form action="ModifProfilCons" method="POST">
+                        <input type="hidden" value="${u.id}" name="iduser">
+                        <td><button  type="submit" class="btn btn-outline-success" >Modifier Infos Profil</button> </td>
+                    </form>
+                    </tr>
+
+                </c:forEach>
+
+                </tbody>
+            </table>
+        </div>
     </body>
 </html>
 

@@ -47,7 +47,7 @@ public class ModifProfilConseillerServelt extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet ModifProfilServelt</title>");            
+            out.println("<title>Servlet ModifProfilServelt</title>");
             out.println("</head>");
             out.println("<body>");
             out.println("<h1>Servlet ModifProfilServelt at " + request.getContextPath() + "</h1>");
@@ -80,29 +80,26 @@ public class ModifProfilConseillerServelt extends HttpServlet {
         } catch (SQLException ex) {
             Logger.getLogger(ModifProfilConseillerServelt.class.getName()).log(Level.SEVERE, null, ex);
         }
-        */
-        
-        HttpSession session = request.getSession(true);
-        User user =(User) session.getAttribute("user");
-         if (user != null) {
-                    try {
-        List<User> users = ConseillerDao.getAllConseiller();
-        List<Person> persons = PersonDao.getAllPerson();
+         */
 
-        request.setAttribute("users", users);
-        request.setAttribute("persons", persons);
-       request.getRequestDispatcher("WEB-INF/modifProfilConseiller.jsp").forward(request, response);
-               } catch (Exception e) {
-             PrintWriter out = response.getWriter();
-             out.println("expt :"+e.getMessage());
-        }
-            
+        HttpSession session = request.getSession(true);
+        User user = (User) session.getAttribute("user");
+        if (user != null) {
+            try {
+                List<User> users = ConseillerDao.getAllConseiller();
+
+                request.setAttribute("users", users);
+                request.getRequestDispatcher("WEB-INF/modifProfilConseiller.jsp").forward(request, response);
+            } catch (Exception e) {
+                PrintWriter out = response.getWriter();
+                out.println("expt :" + e.getMessage());
+            }
+
         } else {
             request.setAttribute("msg", "tu n'es pas connecter");
             request.getRequestDispatcher("index.jsp").forward(request, response);
         }
     }
-    
 
     /**
      * Handles the HTTP <code>POST</code> method.
@@ -115,7 +112,18 @@ public class ModifProfilConseillerServelt extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        String idperson = request.getParameter("iduser");
+        int id = Integer.parseInt(idperson);
+
+        try {
+            User u = UserDao.getUserById(id);
+            request.setAttribute("user", u);
+            request.getRequestDispatcher("WEB-INF/formModifProfilConseiller.jsp").forward(request, response);
+
+        } catch (Exception e) {
+            PrintWriter out = response.getWriter();
+            out.println("expt :" + e.getMessage());
+        }
     }
 
     /**

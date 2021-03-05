@@ -40,25 +40,33 @@ public class UserDao {
         return u;
     }
     
-    public static User getUserById(String id) throws SQLException {
+    public static User getUserById(int id) throws SQLException {
 
-        User p = null;
-        String sql = "select * from utilisateur where idperson=?";
+        User u = null;
+        String sql = "SELECT * FROM utilisateur u INNER JOIN person p ON p.idperson = u.idperson where u.idutilisateur=?";
         Connection conn = AccessBd.getConnection();
 
         PreparedStatement prepare = conn.prepareStatement(sql);
-        prepare.setString(1, id);
+        prepare.setInt(1, id);
         ResultSet rs = prepare.executeQuery();
 
         if (rs.next()) {
-            p = new User();
-
+            u = new User();
+            u.setId(rs.getInt("idutilisateur"));
+            u.setLogin(rs.getString("login"));
+            u.setMdp(rs.getString("mdp"));
+            
+            Person p = new Person();
             p.setId(rs.getInt("idperson"));
-            p.setLogin(rs.getString("login"));
-            p.setMdp(rs.getString("mdp"));
+            p.setNom(rs.getString("nom"));
+            u.setPerson(p);
+            
+            Role r = new Role();
+            r.setId(rs.getInt("idrole"));
+            u.setRole(r);
             
         }
-        return p;
+        return u;
     }
 
     /* public static int insertPerson(User u) throws SQLException {
