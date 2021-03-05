@@ -61,7 +61,7 @@
                                 <div class="d-grid gap-2">
                                     <button type="submit" class="btn btn-primary btn-block" onclick="location.href = 'inscription'">Inscription</button>
                                     <button type="button" class="btn btn-success btn-block" onclick="location.href = 'login'">Se connecter</button>
-                                    <button type="submit" class="btn btn-danger"  onclick="reset()">Annuler</button>
+                                    <button type="reset" class="btn btn-danger">Annuler</button>
                                 </div>
 
                                 <p class="text-center text-danger" id="msg"> ${msg} </p>

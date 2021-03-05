@@ -1,7 +1,7 @@
 <%-- 
-    Document   : homeClient
-    Created on : 3 mars 2021, 21:32:55
-    Author     : Nathan Ghozlan
+    Document   : Autres
+    Created on : Mar 5, 2021, 12:51:35 AM
+    Author     : marye
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
@@ -12,9 +12,6 @@
         <title>JSP Page</title>
     </head>
     <body>
-        <%@include file="menuClient.jsp" %>
-
-        <h1></h1>
+        <h1>Hello World!Autres</h1>
     </body>
 </html>
-

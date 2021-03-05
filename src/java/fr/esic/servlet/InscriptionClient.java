@@ -72,11 +72,7 @@ public class InscriptionClient extends HttpServlet {
         Person p = new Person(nom, prenom, telephone, sexe, dateNaiss, email, adresse);
 
         try {
-            /* int lastId = UserDao.insertPerson(u);
-            u.setIdPerson(lastId);
-            u.setLogin(login);
-            u.setPassword(password);
-            ClientDao.insertClient(u);*/
+     
 
             PersonDao.insertPerson(p);
             Person pe = PersonDao.getPersonByEmail(email);
