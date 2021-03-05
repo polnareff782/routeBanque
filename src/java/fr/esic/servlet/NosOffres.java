@@ -58,7 +58,7 @@ public class NosOffres extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+this.getServletContext().getRequestDispatcher("/WEB-INF/NosOffres.jsp").forward(request, response);
     }
 
     /**
@@ -72,7 +72,6 @@ public class NosOffres extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-this.getServletContext().getRequestDispatcher("/WEB-INF/NosOffres.jsp").forward(request, response);
     }
 
     /**

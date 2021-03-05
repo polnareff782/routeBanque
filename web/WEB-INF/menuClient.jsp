@@ -3,7 +3,7 @@
 <html>
     <head>
         <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-
+     <%@ include file="EnteteClient.jsp"%>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <script src="https://kit.fontawesome.com/c441cb6851.js" crossorigin="anonymous"></script>
@@ -18,74 +18,9 @@
     <body>
         <div class="container center mt-2">
             <h6 class="titre text-danger">
-                <span class="name">${client.prenom} ${client.nom}  </span> </h6>
+                <span class="name"> </span> </h6>
 
-            <div class="container-fluid">
-
-                <nav class="navbar navbar-expand-md  navbar-white bg-white">
-
-                    <div class="collapse navbar-collapse  justify-content-between" id="navbarSupportedContent">
-
-                        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-
-                            <li class="nav-item">
-
-                                <a class="nav-link active font-weight-bold px-3 px-3" aria-current="page" href="#">Comptes et cartes</a>
-
-                            </li>
-
-                            <li class="nav-item">
-
-                                <a class="nav-link active font-weight-bold px-3" href="Emprunter">Emprunter</a>
-
-                            </li>
-
-                            <li class="nav-item">
-                                <a class="nav-link active font-weight-bold px-3" href="Epargner">Epargner</a>
-
-                            </li>  
-
-                            <li class="nav-item">
-                                <a class="nav-link active font-weight-bold px-3" href="NosConseil">Nos conseils</a>
-
-                            </li>
-
-                            <li class="nav-item">
-                                <a class="nav-link active font-weight-bold px-3" href="Autres">Autres</a>
-
-                            </li>
-
-                        </ul>
-
-
-
-                        <ul class="navbar-nav">
-
-
-                            <li class="nav-item">
-
-                                <a class="nav-link active font-weight-bold px-3 fas fa-bell fa-2x material-icons "style ="color:blue; "href="#" title="Pas de Notification" data-toggle="popover" data-trigger="hover" data-content="pas de notifications"></a>
-
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link active font-weight-bold px-3 fas fa-comments fa-2x material-icons " style ="color:blue;"href=#></a>
-
-                            </li>
-
-
-                            <li class="nav-item">
-                                <a class="nav-link active font-weight-bold px-3" href="DeconnexionServlet">Déconnexion</a>
-
-                            </li>
-
-                        </ul>
-
-
-                    </div>
-                </nav>
-
-            </div>
-        </div>
+            
 
 
 
@@ -176,9 +111,7 @@
                 <div class="col-md-4 mb-2 px-5">
 
                     <br>  <br>   <br> 
-
-
-                    <div class="progress mt-4">
+                    <!-- <div class="progress mt-4">
                         <div class="progress-bar bg-success progress-bar-striped progress-bar-animated" role="progressbar" style="width: 25%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"> 25%</div>
                     </div>
 
@@ -190,21 +123,19 @@
 
                     <div class="progress">
                         <div class="progress-bar bg-info progress-bar-striped progress-bar-animated " role="progressbar" style="width: 35%" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"> 35%</div>
-                    </div>
+                    </div>  -->
+                    <label>  </label>
+                   <button type="button" class="btn btn-outline-danger">Désactiver carte</button>
 
                 </div>
                 <div class="col-sm-3 mb-2 px-5">
                     <br>     <br>  <br>  
-                    <label>Activer </label>
-                    <input type="checkbox" checked data-toggle="toggle" data-onstyle="outline-secondary" data-offstyle="outline-success">
-
-
-                </div>
-
+                
+              
             </div>
         </div>
 
-
+  
 
     </body>
 </html>
