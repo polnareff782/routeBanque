@@ -109,7 +109,7 @@ public class PersonDao {
 
             u.setSexe(rs.getString("sexe"));
 
-           // u.setDateNaissance(rs.getString("dateNaissance"));
+           //u.setDateNaissance(rs.getString("dateNaissance"));
             u.setEmail(rs.getString("email"));
             u.setAddress(rs.getString("adresse"));
 

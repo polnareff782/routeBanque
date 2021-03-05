@@ -55,7 +55,7 @@ public class ConnexionServlet extends HttpServlet {
         try {
             
             User u = UserDao.getByLoginAndPassword(log, mdp);
-            
+           // int statut = u.getStatut();
             if (u != null) {
                 request.getSession(true).setAttribute("user", u);
                 // remettre en menuAdmin

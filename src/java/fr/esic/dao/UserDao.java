@@ -12,7 +12,7 @@ public class UserDao {
     
     public static User getByLoginAndPassword(String log, String mdp) throws SQLException {
         User u = null;
-        String sql = "SELECT * FROM utilisateur u INNER JOIN person p ON p.idperson = u.idperson WHERE login=? AND mdp=?";
+        String sql = "SELECT * FROM utilisateur u INNER JOIN person p ON p.idperson = u.idperson WHERE login=? AND mdp=? AND statut = 1";
         Connection connexion = AccessBd.getConnection();
         
         PreparedStatement prepare = connexion.prepareStatement(sql);
