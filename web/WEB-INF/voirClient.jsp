@@ -1,10 +1,12 @@
-<%--
-    Document   : homeConseiller
-    Created on : 3 mars 2021, 21:04:16
-    Author     : Nathan Ghozlan
+<%-- 
+    Document   : voirClient
+    Created on : 7 mars 2021, 17:25:59
+    Author     : dylan55
 --%>
+
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+
 <!DOCTYPE html>
 <html>
     <head>
@@ -12,7 +14,7 @@
         <title>JSP Page</title>
     </head>
     <body>
-        <%@include file="menuConseiller.jsp" %>
+  <%@include file="menuConseiller.jsp" %>
         <h1>Hello World!</h1>
 
         <div class="container">
@@ -55,5 +57,6 @@
                 </tbody>
             </table>
         </div>
+
     </body>
 </html>

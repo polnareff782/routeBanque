@@ -32,7 +32,7 @@
                 <div class="collapse navbar-collapse " id="navbarNav">
                     <ul class="navbar-nav nav-fill w-100">
                         <li class="nav-item active">
-                            <a class="nav-link" href="#">Valider compte client</a>
+                            <a class="nav-link" href="allClient">Voir compte client</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="#">Activer/Désactiver compte client 	</a>

@@ -85,9 +85,7 @@ public class CompteDao {
         
         String sql ="SELECT idcompte  ,numcompte,solde ,numcarte ,operation ,Date_expiration, if(etatcarte,'true','false') etat FROM compte where etatcarte=false";
         Connection connexion = AccessBd.getConnection();
-        
            Statement st = connexion.createStatement();
-        
         ResultSet rs = st.executeQuery(sql);
         
         while(rs.next()){

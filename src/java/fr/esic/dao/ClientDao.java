@@ -1,5 +1,7 @@
 package fr.esic.dao;
 
+import fr.esic.model.Person;
+import fr.esic.model.Role;
 import fr.esic.model.User;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -88,4 +90,42 @@ public class ClientDao {
         return c;
     }
      */
+    
+    
+    public static List<User> getAllClient() throws SQLException {
+
+        List<User> users = new ArrayList<>();
+
+        String sql = "SELECT * FROM utilisateur u INNER JOIN person p ON p.idperson = u.idperson WHERE idrole=3";
+
+        Connection connexion = AccessBd.getConnection();
+
+        Statement requete = connexion.createStatement();
+
+        ResultSet rs = requete.executeQuery(sql);
+        while (rs.next()) {
+            User u = new User();
+            u.setId(rs.getInt("idutilisateur"));
+            u.setLogin(rs.getString("login"));
+            u.setMdp(rs.getString("mdp"));
+
+            Person p = new Person();
+            p.setId(rs.getInt("idperson"));
+            p.setNom(rs.getString("nom"));
+            p.setPrenom(rs.getString("prenom"));
+            p.setSexe(rs.getString("sexe"));
+            p.setTelephone(rs.getString("telephone"));
+            p.setEmail(rs.getString("email"));
+            p.setAddress(rs.getString("adresse"));
+            p.setDateNaissance(rs.getString("dateNaissance"));
+            u.setPerson(p);
+
+            Role r = new Role();
+            r.setId(rs.getInt("idrole"));
+            u.setRole(r);
+
+            users.add(u);
+        }
+        return users;
+    }
 }

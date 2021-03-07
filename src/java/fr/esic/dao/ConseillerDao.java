@@ -64,6 +64,9 @@ public class ConseillerDao {
         }
         return users;
     }
+    
+    
+    
 
     /* public static User getConseillerByLoginAndPassword(String log, String mdp) throws SQLException {
         User u = null;
