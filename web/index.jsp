@@ -16,39 +16,52 @@
         <!-- CSS only -->
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet"
               integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
+        <link rel="preconnect" href="https://fonts.gstatic.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com">
+        <link href="https://fonts.googleapis.com/css2?family=Anton&family=Caveat:wght@500&display=swap" rel="stylesheet">
     </head>
 
-    <body>
-        <br><br><br><br><br>
-        <div class="container mt-4">
-            <form action="login" method="POST">
-                <div class="content-login">
-                    <div class="card shadow-card">
-                        <div class="card-header card-header-back">
-                            <h5 class="card-title-perso text-center"> Connexion</h5>
-                        </div>
-                        <div>
-                            <div class="card-body">
-                                <div class="mb-3">
-                                    <label for="login" class="my-label">Login</label>
-                                    <input type="text" required id="login" class="form-control" name="login">
-                                </div>
-                                <div class="mb-3">
-                                    <label for="login" class="my-label">Password</label>
-                                    <input type="password"  required id="mdp" class="form-control" name="mdp">
-                                </div>
-                                <div class="d-grid gap-2">
-                                    <button type="submit" class="btn btn-success btn-block">Valider</button>
-                                    <button type="button" class="btn btn-primary" onclick="location.href = 'InscriptionClient'">S'inscrire</button>
-                                </div>
 
-                                <p class="text-center text-danger" id="msg"> ${msg} </p>
+    <body style="background-color:#fff9ed;">
+        <div class="argent">
+
+            <div> 
+                <h1> BanqueRoute</h1> 
+                <p>la banque de la hess</p>
+            </div>
+            <div class="container mt-4 " style="background-color: #fff9ed">
+                <form action="login" method="POST">
+                    <div class="content-login">
+                        <div class="card shadow-card">
+                            <div class="card-header card-header-back">
+                                <h5 class="card-title-perso text-center"> Connexion</h5>
                             </div>
-                        </div>
+                            <div>
+                                <div class="card-body">
+                                    <div class="mb-3">
+                                        <label for="login" class="my-label">Login</label>
+                                        <input type="text" required id="login" class="form-control" name="login">
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="login" class="my-label">Password</label>
+                                        <input type="password"  required id="mdp" class="form-control" name="mdp">
+                                    </div>
+                                    <div class="d-grid gap-2">
+                                        <button type="submit" class="btn btn-success btn-block">Valider</button>
+                                        <button type="button" class="btn btn-primary" onclick="location.href = 'InscriptionClient'">S'inscrire</button>
+                                    </div>
 
+                                    <p class="text-center text-danger" id="msg"> ${msg} </p>
+                                </div>
+                            </div>
+
+                        </div>
                     </div>
-                </div>
-            </form>
+                </form>
+            </div>
         </div>
     </body>
 
