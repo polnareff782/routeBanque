@@ -50,8 +50,12 @@
                         <th>LOGIN</th>
                         <th>PASSWORD</th>
                         <th>Nom</th>                    
-                        <th>prenom</th>                    
-                        <th>adresse</th>                    
+                        <th>Prenom</th>
+                        <th>Sexe</th>
+                        <th>Naissance</th>
+                        <th>Téléphone</th>
+                        <th>Mail</th>
+                        <th>Adresse</th>                    
                         <th>MODIFICATIONS PROFILS</th>
                     </tr>
                 </thead>
@@ -65,6 +69,10 @@
                             <td>${u.mdp}</td>
                             <td>${u.person.nom}</td>
                             <td>${u.person.prenom}</td>
+                            <td>${u.person.sexe}</td>
+                            <td>${u.person.dateNaissance}</td>
+                            <td>${u.person.telephone}</td>
+                            <td>${u.person.email}</td>
                             <td>${u.person.address}</td>
                     <form action="ModifProfilCons" method="POST">
                         <input type="hidden" value="${u.id}" name="iduser">
