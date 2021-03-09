@@ -68,25 +68,13 @@ public class ModifProfilConseillerServelt extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        /*
-        try {
-            String id = request.getParameter( "id" );
-            System.out.println(id);
-            Person p = PersonDao.getPersonById(id);
-            
-            request.setAttribute("Person", p);
-            
-            request.getRequestDispatcher("/WEB-INF/modifProfilConseiller.jsp").forward(request, response);
-        } catch (SQLException ex) {
-            Logger.getLogger(ModifProfilConseillerServelt.class.getName()).log(Level.SEVERE, null, ex);
-        }
-         */
 
         HttpSession session = request.getSession(true);
         User user = (User) session.getAttribute("user");
         if (user != null) {
             try {
                 List<User> users = ConseillerDao.getAllConseiller();
+
                 request.setAttribute("users", users);
                 request.getRequestDispatcher("WEB-INF/modifProfilConseiller.jsp").forward(request, response);
             } catch (Exception e) {
@@ -95,7 +83,7 @@ public class ModifProfilConseillerServelt extends HttpServlet {
             }
 
         } else {
-            request.setAttribute("msg", "Connectez vous");
+            request.setAttribute("msg", "tu n'es pas connecter");
             request.getRequestDispatcher("index.jsp").forward(request, response);
         }
     }
@@ -111,14 +99,13 @@ public class ModifProfilConseillerServelt extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        String idperson = request.getParameter("iduser");
-        int id = Integer.parseInt(idperson);
+        String iduser = request.getParameter("iduser");
+        int id = Integer.parseInt(iduser);
 
         try {
             User u = UserDao.getUserById(id);
             request.setAttribute("user", u);
             request.getRequestDispatcher("WEB-INF/formModifProfilConseiller.jsp").forward(request, response);
-
         } catch (Exception e) {
             PrintWriter out = response.getWriter();
             out.println("expt :" + e.getMessage());
