@@ -19,7 +19,7 @@ import java.util.List;
 public class ConseillerDao {
 
     public static void insertConseiller(User c) throws SQLException {
-        String sql = "INSERT INTO utilisateur (login, mdp, idperson, idrole) VALUES (?, ?, ?, 2)";
+        String sql = "INSERT INTO utilisateur (login, mdp, idperson, idrole, statut) VALUES (?, ?, ?, 2, 1)";
         Connection connexion = AccessBd.getConnection();
         PreparedStatement prepare = connexion.prepareStatement(sql);
         prepare.setString(1, c.getLogin());
@@ -66,28 +66,18 @@ public class ConseillerDao {
     }
     
     
-    
+    public static void UpdateConseiller(User u) throws SQLException {
+        String sql = "UPDATE `utilisateur` SET login = ?, mdp = ? WHERE idperson = ?";
 
-    /* public static User getConseillerByLoginAndPassword(String log, String mdp) throws SQLException {
-        User u = null;
-        String sql = "SELECT * FROM utilisateur WHERE login=? AND mdp=? WHERE idrole=2";
         Connection connexion = AccessBd.getConnection();
-
         PreparedStatement prepare = connexion.prepareStatement(sql);
-        prepare.setString(1, log);
-        prepare.setString(2, mdp);
+        prepare.setString(1, u.getLogin());
+        prepare.setString(2, u.getMdp());
+        prepare.setInt(3, u.getPerson().getId());
+        //System.out.println("id: " + u.getPerson().getId());
+        prepare.execute();
 
-        ResultSet rs = prepare.executeQuery();
+    }
 
-        if (rs.next()) {
-            u = new User();
-            u.setIdUtil(rs.getInt("idutilisateur"));
-            u.setLogin(rs.getString("login"));
-            u.setPassword(rs.getString("mdp"));
-            u.setIdPerson(rs.getInt("idperson"));
-            u.setIdRole(rs.getInt("idrole"));
-        }
 
-        return u;
-    }*/
 }

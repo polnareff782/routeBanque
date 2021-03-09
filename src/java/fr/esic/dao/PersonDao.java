@@ -47,14 +47,14 @@ public class PersonDao {
         return p;
     }
 
-    public static Person getPersonById(String id) throws SQLException {
+    public static Person getPersonById(int id) throws SQLException {
 
         Person p = null;
         String sql = "select * from person where idperson=?";
         Connection conn = AccessBd.getConnection();
 
         PreparedStatement prepare = conn.prepareStatement(sql);
-        prepare.setString(1, id);
+        prepare.setInt(1, id);
         ResultSet rs = prepare.executeQuery();
 
         if (rs.next()) {
@@ -84,11 +84,44 @@ public class PersonDao {
         prepare.setString(6, p.getEmail());
         prepare.setString(7, p.getAddress());
         prepare.execute();
-        /* ResultSet RSid = prepare.getGeneratedKeys();
-        RSid.next();
-        return RSid.getInt(1);*/
     }
 
+    public static void UpdatePerson(Person p) throws SQLException {
+        String sql = "UPDATE person SET nom = ?, prenom = ?, telephone = ?, sexe = ?, dateNaissance = ?, email = ?, adresse = ? WHERE idperson = ?";
+        Connection connexion = AccessBd.getConnection();
+        PreparedStatement prepare = connexion.prepareStatement(sql);
+        prepare.setString(1, p.getNom());
+        prepare.setString(2, p.getPrenom());
+        prepare.setString(3, p.getTelephone());
+        prepare.setString(4, p.getSexe());
+        prepare.setString(5, p.getDateNaissance());
+        prepare.setString(6, p.getEmail());
+        prepare.setString(7, p.getAddress());
+        prepare.setInt(8, p.getId());
+        System.out.println("idpers:" + p.getId());
+
+        prepare.execute();
+
+    }
+
+    /*
+    public static void UpdatePerson(String nom, String prenom, String telephone, String sexe, String dateNaissance, String email, String adresse, int id) throws SQLException {
+        String sql = "UPDATE `person` SET nom = ?, prenom = ?, telephone = ?, sexe = ?, dateNaissance = ?, email = ?, adresse = ? `adresse` = ? WHERE `person`.`idperson` = ?";
+        Connection connexion = AccessBd.getConnection();
+        PreparedStatement prepare = connexion.prepareStatement(sql);
+        prepare.setString(1, nom);
+        prepare.setString(2, prenom);
+        prepare.setString(3, telephone);
+        prepare.setString(4, sexe);
+        prepare.setString(5, dateNaissance);
+        prepare.setString(6, email);
+        prepare.setString(7, adresse);
+        prepare.setInt(8, id);
+
+        prepare.execute();
+
+    }
+     */
     public static List<Person> getAllPerson() throws SQLException {
 
         List<Person> persons = new ArrayList<>();
@@ -115,7 +148,5 @@ public class PersonDao {
         }
         return persons;
     }
-
-    
 
 }

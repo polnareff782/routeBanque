@@ -31,10 +31,7 @@
                             <a class="nav-link" href="InscriptionConseillerServlet">Créer un compte conseiller</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#">Modifier compte conseiller </a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#">Activer/Désactiver compte conseiller</a>
+                            <a class="nav-link" href="ActiverConseiller">Activer/Désactiver compte conseiller</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="ModifProfilCons">Modifier profil conseiller</a>

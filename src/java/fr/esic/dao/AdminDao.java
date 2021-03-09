@@ -41,7 +41,7 @@ public class AdminDao {
         return u;
     }*/
     public static void insertAdmin(User admin) throws SQLException {
-        String sql = "INSERT INTO utilisateur (login, mdp, idperson, idrole) VALUES (?, ?, ?, 1)";
+        String sql = "INSERT INTO utilisateur (login, mdp, idperson, idrole, statut) VALUES (?, ?, ?, 1, 1)";
         Connection connexion = AccessBd.getConnection();
         PreparedStatement prepare = connexion.prepareStatement(sql);
         prepare.setString(1, admin.getLogin());

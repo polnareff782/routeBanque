@@ -7,6 +7,7 @@ package fr.esic.servlet;
 
 import fr.esic.dao.ConseillerDao;
 import fr.esic.dao.PersonDao;
+import fr.esic.dao.UserDao;
 import fr.esic.model.Person;
 import fr.esic.model.User;
 import java.io.IOException;
@@ -21,8 +22,8 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author Nathan Ghozlan
  */
-@WebServlet(name = "FormModifProfilConseillerServelt", urlPatterns = {"/FormModifConseiller"})
-public class FormModifProfilConseillerServelt extends HttpServlet {
+@WebServlet(name = "FormActiverConseiller", urlPatterns = {"/FormActiverConseiller"})
+public class FormActiverConseiller extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -41,10 +42,10 @@ public class FormModifProfilConseillerServelt extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet FormModifProfilConseillerServelt</title>");
+            out.println("<title>Servlet FormActiverConseiller</title>");            
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>Servlet FormModifProfilConseillerServelt at " + request.getContextPath() + "</h1>");
+            out.println("<h1>Servlet FormActiverConseiller at " + request.getContextPath() + "</h1>");
             out.println("</body>");
             out.println("</html>");
         }
@@ -76,48 +77,8 @@ public class FormModifProfilConseillerServelt extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        //processRequest(request, response);
+        processRequest(request, response);
         
-        /*
-        String idperson = request.getParameter("idperson");
-        int id = Integer.parseInt(idperson);*/
-
-        String nom = request.getParameter("nom");
-        String prenom = request.getParameter("prenom");
-
-        String telephone = request.getParameter("telephone");
-        String sexe = request.getParameter("sexe");
-        String dateNaiss = request.getParameter("dateNaissance");
-        String email = request.getParameter("email");
-        String adresse = request.getParameter("adresse");
-
-        String login = request.getParameter("login");
-        String password = request.getParameter("mdp");
-
-        Person p = new Person(nom, prenom, telephone, sexe, dateNaiss, email, adresse);
-
-        try {
-            /* int lastId = UserDao.insertPerson(u);
-            u.setIdPerson(lastId);
-            u.setLogin(login);
-            u.setPassword(password);*/
-
-            PersonDao.UpdatePerson(p);
-
-            Person pe = PersonDao.getPersonByEmail(email);
-            //Person pe = PersonDao.getPersonById(id);
-            //System.out.println("person: " + pe);
-            //System.out.println("id: " + id);
-
-            User c = new User(login, password, pe);
-
-            ConseillerDao.UpdateConseiller(c);
-
-            request.getRequestDispatcher("AccueilServlet").forward(request, response);
-        } catch (Exception e) {
-            PrintWriter out = response.getWriter();
-            out.println("Exception :" + e.getMessage());
-        }
     }
 
     /**
