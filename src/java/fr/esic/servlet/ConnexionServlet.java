@@ -55,10 +55,12 @@ public class ConnexionServlet extends HttpServlet {
         try {
             
             User u = UserDao.getByLoginAndPassword(log, mdp);
-            
+           // int statut = u.getStatut();
             if (u != null) {
                 request.getSession(true).setAttribute("user", u);
-              
+                // remettre en menuAdmin
+                //this.getServletContext().getRequestDispatcher("/WEB-INF/menuAdmin.jsp").forward(request, response);
+
                 switch (u.getRole().getId()) {
                     case 1:
                         this.getServletContext().getRequestDispatcher("/WEB-INF/homeAdmin.jsp").forward(request, response);
@@ -67,13 +69,14 @@ public class ConnexionServlet extends HttpServlet {
                         this.getServletContext().getRequestDispatcher("/WEB-INF/homeConseiller.jsp").forward(request, response);
                         break;
                     case 3:
+                        //this.getServletContext().getRequestDispatcher("/WEB-INF/homeClient.jsp").forward(request, response);
                         response.sendRedirect("MenuClient");
                         break;
                     default:
                         break;
                 }
 
-          
+                //response.sendRedirect("memos");
             } else {
                 request.setAttribute("msg", "identifiants incorrects!!");
                 this.getServletContext().getRequestDispatcher("/index.jsp").forward(request, response);
@@ -95,6 +98,6 @@ public class ConnexionServlet extends HttpServlet {
     @Override
     public String getServletInfo() {
         return "Short description";
-    }
+    }// </editor-fold>
 
 }

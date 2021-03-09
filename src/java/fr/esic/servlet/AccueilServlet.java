@@ -95,11 +95,12 @@ public class AccueilServlet extends HttpServlet {
         }
 
         String id = request.getParameter("id");
+        int idu = Integer.parseInt(id);
         System.out.println("id: " + id);
 
         try {
 
-            User u = UserDao.getUserById(id);
+            User u = UserDao.getUserById(idu);
 
             if (u != null) {
                 request.getSession(true).setAttribute("user", u);

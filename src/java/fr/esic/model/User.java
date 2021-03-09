@@ -6,10 +6,11 @@ public class User {
     private String mdp;
     private Person person;
     private Role role;
-
+    private int statut;
     public User() {
     }
 
+    
     public User(int id, String login, String mdp, Person person, Role role) {
         this.id = id;
         this.login = login;
@@ -23,6 +24,25 @@ public class User {
         this.mdp = mdp;
         this.person = person;
     }
+
+    public User(int id, String login, String mdp, Person person, Role role, int statut) {
+        this.id = id;
+        this.login = login;
+        this.mdp = mdp;
+        this.person = person;
+        this.role = role;
+        this.statut = statut;
+    }
+
+    public int getStatut() {
+        return statut;
+    }
+
+    public void setStatut(int statut) {
+        this.statut = statut;
+    }
+
+   
 
     public int getId() {
         return id;

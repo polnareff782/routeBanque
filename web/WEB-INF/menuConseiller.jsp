@@ -16,6 +16,9 @@
         <link rel="stylesheet" href="https://unpkg.com/bootstrap-material-design@4.1.1/dist/css/bootstrap-material-design.min.css" integrity="sha384-wXznGJNEXNG1NFsbm0ugrLFMQPWswR3lds2VeinahP8N0zJw9VWSopbjv2x7WCvX" crossorigin="anonymous">
         <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
               rel="stylesheet">
+        <script src="https://cdn.jsdelivr.net/gh/gitbrent/bootstrap4-toggle@3.6.1/js/bootstrap4-toggle.min.js"></script>
+
+        <link href="https://cdn.jsdelivr.net/gh/gitbrent/bootstrap4-toggle@3.6.1/css/bootstrap4-toggle.min.css" rel="stylesheet">
         <title>JSP Page</title>
     </head>
     <body>
@@ -29,7 +32,7 @@
                 <div class="collapse navbar-collapse " id="navbarNav">
                     <ul class="navbar-nav nav-fill w-100">
                         <li class="nav-item active">
-                            <a class="nav-link" href="#">Valider compte client</a>
+                            <a class="nav-link" href="allClient">Voir compte client</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="#">Activer/Désactiver compte client 	</a>
@@ -55,6 +58,7 @@
                     </ul>
                 </div>
             </nav>
+<input type="checkbox" checked data-toggle="toggle" data-size="sm">
 
         </div>
     </body>

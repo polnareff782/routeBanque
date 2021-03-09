@@ -25,11 +25,11 @@
                         <div class="card-body">
                             <div class="mb-3">
                                 <label for="nom" class="my-label">Nom</label>
-                                <input type="text" id="nom" class="form-control" name="nom">
+                                <input type="text" id="nom" class="form-control" value="${user.person.id}" name="nom">
                             </div>
                             <div class="mb-3">
                                 <label for="prenom" class="my-label">Prenom</label>
-                                <input type="text" id="prenom" class="form-control" name="prenom">
+                                <input type="text" id="prenom" class="form-control" value="test" name="prenom">
                             </div>
                             <div class="mb-3">
                                 <label for="login" class="my-label">Login</label>

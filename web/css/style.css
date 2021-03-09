@@ -1,3 +1,12 @@
+q/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : 19 févr. 2021, 12:34:07
+    Author     : polnareff
+*/
 
 .titre{
     text-align: center;
@@ -38,16 +47,82 @@
     margin-top: 50px;
 }
 
+.pipe{
+    color : turquoise;
+    letter-spacing: 3px;
+}
+
+a{
+    color: pink;
+}
+
+a:hover{
+    color: red;
+}
+
 .head-table-user{
     color: blue;
     background-color: green;
 }
 
+.btn{
+    color: lightgray;
+    background-color: brown;
+}
+
+.btn:hover
+{
+    color: blueviolet;
+}
+/*.banqueroute{
+    text-align: center;
+    font-family: "Oi script=latin rev=3";
+    font-size: 4em;
+    color: red;s
+    
+}*/
+
+h1{
+font-family: 'Anton', sans-serif;
+color: red;
+text-align: center;
+text-shadow: -1px 0 0 rgba(0, 0, 0, 0.8), 
+             1px 0 0 rgba(0, 0, 0, 0.8),
+             0 -1px 0 rgba(0, 0, 0, 0.8),
+             0 1px 0 rgba(0, 0, 0, 0.8);
+text-decoration: underline;
+}
+
+p{
+    font-family: 'Caveat', cursive;
+    text-align: center;
+    color: #e0365b;
+    text-decoration: underline;
+
+}
+
+
+body{
+    background-color: red;
+
+}
+
+.argent{
+  background-image: url("https://image.freepik.com/vecteurs-libre/roupies-indiennes-tombant-fond_23-2148007354.jpg");
+  border-radius:8px;
+}
 
 .my-label{
     color: darkgray;
     letter-spacing: 3px;
     font-size: large;
+
+}
+.connexion{
+    color: black;
+    letter-spacing: 3px;
+    font-size: large;
+    text-decoration: underline;
 
 }
 
@@ -69,7 +144,7 @@
 }
 
 .card-perso-box{
-box-shadow: 0 20px 49px rgba(0,0,0,0.30) !important;
+    box-shadow: 0 20px 49px rgba(0,0,0,0.30) !important;
 }
 
 .press p {
@@ -126,17 +201,17 @@ html{
 }
 .title
 { 
-   ext-transform: uppercase;
- letter-spacing :0.2rem;
-word-spacing: 0.5rem;
-color:#00f;
-text-align: center;
-margin :0 0 0.5rem 0;
-padding: 1rem;
-text-shadow: 4px 4px 4px rgb(245, 244, 244);
+    ext-transform: uppercase;
+    letter-spacing :0.2rem;
+    word-spacing: 0.5rem;
+    color:#00f;
+    text-align: center;
+    margin :0 0 0.5rem 0;
+    padding: 1rem;
+    text-shadow: 4px 4px 4px rgb(245, 244, 244);
 }
 .container{
- 
+
     width:45rem;
     height: 75rem;
     background-color: #fff;
@@ -149,3 +224,4 @@ text-shadow: 4px 4px 4px rgb(245, 244, 244);
     padding: 2rem;
     text-align: center;
 }
+

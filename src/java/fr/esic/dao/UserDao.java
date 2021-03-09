@@ -1,5 +1,6 @@
 package fr.esic.dao;
 
+import fr.esic.model.Compte;
 import fr.esic.model.Person;
 import fr.esic.model.Role;
 import fr.esic.model.User;
@@ -12,7 +13,7 @@ public class UserDao {
     
     public static User getByLoginAndPassword(String log, String mdp) throws SQLException {
         User u = null;
-        String sql = "SELECT * FROM utilisateur u INNER JOIN person p ON p.idperson = u.idperson WHERE login=? AND mdp=?";
+        String sql = "SELECT * FROM utilisateur u INNER JOIN person p ON p.idperson = u.idperson WHERE login=? AND mdp=? AND statut = 1";
         Connection connexion = AccessBd.getConnection();
         
         PreparedStatement prepare = connexion.prepareStatement(sql);
@@ -30,8 +31,6 @@ public class UserDao {
             Person p = new Person();
             p.setId(rs.getInt("idperson"));
             p.setNom(rs.getString("nom"));
-            p.setNom(rs.getString("prenom"));
-            p.setNom(rs.getString("nom"));
             u.setPerson(p);
             
             Role r = new Role();
@@ -42,25 +41,63 @@ public class UserDao {
         return u;
     }
     
-    public static User getUserById(String id) throws SQLException {
+    public static User getUserById(int id) throws SQLException {
 
-        User p = null;
-        String sql = "select * from utilisateur where idperson=?";
+        User u = null;
+        String sql = "SELECT * FROM utilisateur u INNER JOIN person p ON p.idperson = u.idperson where u.idutilisateur=?";
         Connection conn = AccessBd.getConnection();
 
         PreparedStatement prepare = conn.prepareStatement(sql);
-        prepare.setString(1, id);
+        prepare.setInt(1, id);
         ResultSet rs = prepare.executeQuery();
 
         if (rs.next()) {
-            p = new User();
-
+            u = new User();
+            u.setId(rs.getInt("idutilisateur"));
+            u.setLogin(rs.getString("login"));
+            u.setMdp(rs.getString("mdp"));
+            
+            Person p = new Person();
             p.setId(rs.getInt("idperson"));
-            p.setLogin(rs.getString("login"));
-            p.setMdp(rs.getString("mdp"));
+            p.setNom(rs.getString("nom"));
+            u.setPerson(p);
+            
+            Role r = new Role();
+            r.setId(rs.getInt("idrole"));
+            u.setRole(r);
             
         }
-        return p;
+        return u;
+    }
+    
+    public static List<Person> getAllClient() throws SQLException {
+        List<Person> persons = new ArrayList<>();
+        String sql = "SELECT p.idperson, p.nom, p.prenom, p.email, p.adresse, u.login, c.solde, c.numCp, c.etat FROM person p INNER JOIN utilisateur u ON u.idperson = p.idperson INNER JOIN compte c ON p.idperson = u.idperson AND p.idperson = c.person_idperson WHERE idRole = 3";
+        Connection connexion = AccessBd.getConnection();
+        Statement requete = connexion.createStatement();
+        ResultSet rs = requete.executeQuery(sql);
+        while (rs.next()) {
+            Person u = new Person();
+            Compte c = new Compte();
+            User a = new User();
+
+            u.setId(rs.getInt("idperson"));
+            u.setNom(rs.getString("nom"));
+            u.setPrenom(rs.getString("prenom"));
+            u.setTelephone(rs.getString("telephone"));
+            u.setId(rs.getInt("idperson"));
+            u.setSexe(rs.getString("sexe"));
+            c.setSolde(rs.getString("solde"));
+            a.setLogin(rs.getString("login"));
+            c.setNumcompte(rs.getString("numCp"));
+            c.setEtatcarte(rs.getBoolean("etat"));
+            u.setEmail(rs.getString("email"));
+            u.setAddress(rs.getString("adresse"));
+            a.setLogin(rs.getString("login"));
+
+            persons.add(u);
+        }
+        return persons;
     }
 
     /* public static int insertPerson(User u) throws SQLException {
@@ -104,5 +141,47 @@ public class UserDao {
         return users;
     }
 
+    public static void ActiverClient (String log) throws SQLException{
+           String sql ="Update person set etat=1 WHERE login=?";
+           Connection connexion = AccessBd.getConnection();
+           PreparedStatement prepare = connexion.prepareStatement(sql);
+           prepare.setString(1, log);
+           prepare.execute();
+       }
+           public static void DesactiverClient (String log) throws SQLException{
+           String sql ="Update person set etat=0 WHERE login=?";
+           Connection connexion = AccessBd.getConnection();
+           PreparedStatement prepare = connexion.prepareStatement(sql);
+           prepare.setString(1, log);
+           prepare.execute();   
+       }
+           
+           public static User AfficheUser (int id) throws SQLException {    
+              User u = null;
+              Person p = null;
+          String  sql = "select * from person where idperson=?"; 
+          String  sqla = "select * from person where idperson=?";       
+
+         Connection connexion = AccessBd.getConnection();
+         PreparedStatement prepare = connexion.prepareStatement(sql);
+         PreparedStatement preparer = connexion.prepareStatement(sqla);
+         
+         prepare.setInt(1,id);
+   
+        ResultSet rs = prepare.executeQuery();
+        
+        if(rs.next()){
+            u = new User();
+            p = new Person();
+            p.setId(rs.getInt("idperson"));
+            p.setNom(rs.getString("nom"));
+            p.setPrenom(rs.getString("prenom"));
+            u.setLogin(rs.getString("login"));
+            u.setMdp(rs.getString("mdp"));
+            
+        }
+        
+        return u;
+    }
      
 }
