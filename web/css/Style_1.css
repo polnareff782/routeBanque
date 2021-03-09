@@ -1,0 +1,16 @@
+
+
+.card{   
+border-radius:5rem ;
+padding-left:  7rem;
+padding: 3rem;
+padding-right:  7rem;
+box-shadow: 0 1.2rem 3rem 0.5rem rgba(95,149,210,0.4);
+padding-right:5rem;
+padding-left:6rem;
+margin-left: 35rem;
+}
+.card-text{
+    color:grey;
+}
+
