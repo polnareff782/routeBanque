@@ -76,6 +76,7 @@ public class MessageServlet extends HttpServlet {
                 Compte comptes = CompteDao.getAllCompte(person);
                  int idperson = person.getId();
                 request.setAttribute("comptes", comptes);
+                
                 List<Message> messages = MessageDao.AfficheContenu(idperson);
                 request.setAttribute("messages", messages);
 

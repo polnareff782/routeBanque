@@ -22,17 +22,16 @@
         <link rel="stylesheet" href="css/Style_1.css">    
 
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.bundle.min.js" integrity="sha384-b5kHyXgcpbZJO/tY9Ul7kGkf1S0CWuKcCD38l8YkeH8z8QjE0GmW1gYU5S9FOnJ0" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta  <title>MesCartes</title>2/dist/js/bootstrap.bundle.min.js" integrity="sha384-b5kHyXgcpbZJO/tY9Ul7kGkf1S0CWuKcCD38l8YkeH8z8QjE0GmW1gYU5S9FOnJ0" crossorigin="anonymous"></script>
         <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.6.0/dist/umd/popper.min.js" integrity="sha384-KsvD1yqQ1/1+IA7gi3P0tyJcT3vR+NdBTt13hSJ2lnve8agRGXTTyNaBYmCR/Nwi" crossorigin="anonymous"></script>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.min.js" integrity="sha384-nsg8ua9HAw1y0W1btsyWgBklPnCUAFLuTMS2G72MMONqmOymq585AcH49TLBQObG" crossorigin="anonymous"></script>
 
-        <title>JSP Page</title>
+        <title>MesCartes</title>
     </head>
     <body> 
-
         <form action="AjoutOperation?numcarte=${comptes.numcarte} " method="Post">
             <div class="row">
-                <div class="col-md-9"></div>
+                <div class="col-md-8"></div>
 
                 <div class="col-md-2 mb-3">
                     <br><br>
@@ -129,7 +128,9 @@
 
         <form action="DemandeDecouvertServlet?numcarte=${comptes.numcarte}" method="Post">
             <div class="row">
-                <div class="col-md-9"></div>
+                <div class="col-md-9">
+                    
+                </div>
                 <div class="col-md-3 mt-2">
 
                     <c:if test="${comptes.etatcarte == true}">
@@ -142,9 +143,6 @@
                         </c:if>
 
                     </c:if>
-
-
-
 
                     <div class="modal fade" id="decouvertmodel" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                         <div class="modal-dialog">

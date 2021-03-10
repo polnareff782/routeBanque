@@ -8,12 +8,24 @@ and open the template in the editor.
     Author     : polnareff
 */
 
+
+.title{    font-style: 'Akaya Kanadaka', cursive;
+}
+.form-label{
+    font-size: large;
+    font-weight: 500;
+}
 .titre{
     text-align: center;
     color : tomato;
     letter-spacing: 5px;
+    font-style: 'Akaya Kanadaka', cursive;
 }
-
+.petit-title{
+    color: grey;
+        font-weight: 100;
+    
+}
 .name {
     font-weight: bold;
 }

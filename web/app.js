@@ -25,3 +25,15 @@ var collapseElementList = [].slice.call(document.querySelectorAll('.collapse'))
 var collapseList = collapseElementList.map(function (collapseEl) {
   return new bootstrap.Collapse(collapseEl)
 })
+$(document).ready(function(){
+
+$('#smartwizard').smartWizard({
+selected: 0,
+theme: 'dots',
+autoAdjustHeight:true,
+transitionEffect:'fade',
+showStepURLhash: false,
+
+});
+
+});

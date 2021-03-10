@@ -88,7 +88,8 @@ public class MenuClient extends HttpServlet {
                 PrintWriter out = response.getWriter();
                 out.println("expt :" + e.getMessage());
             }
-        }
+            
+        }else {System.err.println("ERRE");}
     }
 
     @Override

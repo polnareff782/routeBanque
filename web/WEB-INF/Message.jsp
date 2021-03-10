@@ -94,7 +94,7 @@
                             <c:forEach items="${messages}" var="m">
                                 
                             <div class="card-body">
-                                 ${m.contenuMessage}
+                                 ${m.contenuMessage} ${m.dateMessage}
                             </div>
                                 </c:forEach>
                         </div>
