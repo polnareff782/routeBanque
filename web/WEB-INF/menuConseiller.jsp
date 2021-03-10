@@ -35,7 +35,10 @@
                             <a class="nav-link" href="allClient">Voir compte client</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#">Activer/Désactiver compte client 	</a>
+                            <a class="nav-link" href="ModifProfilCons">Modifier compte conseiller</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="modifProfilClient">Modifier compte client</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="#">Activer/Désactiver carte client </a>
@@ -58,7 +61,6 @@
                     </ul>
                 </div>
             </nav>
-<input type="checkbox" checked data-toggle="toggle" data-size="sm">
 
         </div>
     </body>

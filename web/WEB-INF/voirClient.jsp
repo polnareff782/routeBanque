@@ -21,7 +21,7 @@
             <h1>Bonjour ${Person.nom} !</h1>
 
             <h5>Listes des clients</h5>
-            <table class="table">
+            <table class="table table-hover">
                 <thead>
                     <tr class="table-active">
                         <th>ID</th>
@@ -29,8 +29,8 @@
                         <th>PASSWORD</th>
                         <th>Nom</th>                    
                         <th>prenom</th>                    
-                        <th>adresse</th>                    
-                        <th>MODIFICATIONS PROFILS</th>
+                        <th>statut</th>                    
+                        <th>activer/desactiver client</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -43,11 +43,11 @@
                             <td>${u.mdp}</td>
                             <td>${u.person.nom}</td>
                             <td>${u.person.prenom}</td>
-                            <td>${u.person.address}</td>
-                    <form action="#" method="POST">
+                            <td>${u.statut}</td>
+                    <form action="activerClient" method="POST">
                         <input type="hidden" value="${u.id}" name="iduser">
                         <td>
-                            <button  type="submit" class="btn btn-outline-success" >Modifier Infos Profil</button> 
+                            <button  type="submit" class="btn btn-outline-success" >activer/desactiver client</button> 
                         </td>
                     </form>
                     </tr>

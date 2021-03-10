@@ -108,7 +108,9 @@ public class ClientDao {
             u.setId(rs.getInt("idutilisateur"));
             u.setLogin(rs.getString("login"));
             u.setMdp(rs.getString("mdp"));
+            u.setStatut(rs.getInt("statut"));
 
+            
             Person p = new Person();
             p.setId(rs.getInt("idperson"));
             p.setNom(rs.getString("nom"));
