@@ -51,7 +51,7 @@ public class DesactiverCarteCompte extends HttpServlet {
             out.println("</html>");
         }
     }
-
+/*
    
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
@@ -75,7 +75,7 @@ public class DesactiverCarteCompte extends HttpServlet {
                     catch (SQLException ex) {
           Logger.getLogger(DesactiverCarteCompte.class.getName()).log(Level.SEVERE, null, ex);
       }}}
-    
+    */
 
   
     @Override

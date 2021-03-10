@@ -5,67 +5,62 @@
  */
 package fr.esic.model;
 
-/**
- *
- * @author dylan55
- */
 public class Historique {
-    private int id_Op;
-    private String libelle_Op;
-    private int montant_Op;
-    private String type_Op;
-    private String date_Op;
+    private int idOperation;
+    private String TypeOperation;
+    private int montantOperation;
 
+    private String dateOperation;
+private Person person;
 public Historique() {
     }
 
-    public Historique(int id_Op, String libelle_Op, int montant_Op, String type_Op, String date_Op) {
-        this.id_Op = id_Op;
-        this.libelle_Op = libelle_Op;
-        this.montant_Op = montant_Op;
-        this.type_Op = type_Op;
-        this.date_Op = date_Op;
+    public Historique(String TypeOperation, int montantOperation, String dateOperation, Person person) {
+        this.TypeOperation = TypeOperation;
+        this.montantOperation = montantOperation;
+        this.dateOperation = dateOperation;
+        this.person = person;
     }
 
-    public int getId_Op() {
-        return id_Op;
+    public int getIdOperation() {
+        return idOperation;
     }
 
-    public void setId_Op(int id_Op) {
-        this.id_Op = id_Op;
+    public void setIdOperation(int idOperation) {
+        this.idOperation = idOperation;
     }
 
-    public String getLibelle_Op() {
-        return libelle_Op;
+    public String getTypeOperation() {
+        return TypeOperation;
     }
 
-    public void setLibelle_Op(String libelle_Op) {
-        this.libelle_Op = libelle_Op;
+    public void setTypeOperation(String TypeOperation) {
+        this.TypeOperation = TypeOperation;
     }
 
-    public int getMontant_Op() {
-        return montant_Op;
+    public int getMontantOperation() {
+        return montantOperation;
     }
 
-    public void setMontant_Op(int montant_Op) {
-        this.montant_Op = montant_Op;
+    public void setMontantOperation(int montantOperation) {
+        this.montantOperation = montantOperation;
     }
 
-    public String getType_Op() {
-        return type_Op;
+    public String getDateOperation() {
+        return dateOperation;
     }
 
-    public void setType_Op(String type_Op) {
-        this.type_Op = type_Op;
+    public void setDateOperation(String dateOperation) {
+        this.dateOperation = dateOperation;
     }
 
-    public String getDate_Op() {
-        return date_Op;
+    public Person getPerson() {
+        return person;
     }
 
-    public void setDate_Op(String date_Op) {
-        this.date_Op = date_Op;
+    public void setPerson(Person person) {
+        this.person = person;
     }
 
-    
+ 
 }

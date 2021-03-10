@@ -5,42 +5,42 @@ import java.sql.Date;
 
 
 public class Message {
-    private int id;
-    private String contenu;
-    private Date date_message; 
+    private int idMessage;
+    private String contenuMessage;
+    private Date dateMessage; 
     private Person person;
 
     public Message() {
     }
 
-    public Message(String contenu, Date date_message, Person person) {
-        this.contenu = contenu;
-        this.date_message = date_message;
+    public Message(String contenuMessage, Date dateMessage, Person person) {
+        this.contenuMessage = contenuMessage;
+        this.dateMessage = dateMessage;
         this.person = person;
     }
 
-    public int getId() {
-        return id;
+    public int getIdMessage() {
+        return idMessage;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public void setIdMessage(int idMessage) {
+        this.idMessage = idMessage;
     }
 
-    public String getContenu() {
-        return contenu;
+    public String getContenuMessage() {
+        return contenuMessage;
     }
 
-    public void setContenu(String contenu) {
-        this.contenu = contenu;
+    public void setContenuMessage(String contenuMessage) {
+        this.contenuMessage = contenuMessage;
     }
 
     public Date getDate_message() {
-        return date_message;
+        return dateMessage;
     }
 
-    public void setDate_message(Date date_message) {
-        this.date_message = date_message;
+    public void setDate_message(Date dateMessage) {
+        this.dateMessage = dateMessage;
     }
 
     public Person getPerson() {
@@ -50,11 +50,7 @@ public class Message {
     public void setPerson(Person person) {
         this.person = person;
     }
-    
-    
-    
-    
+
     
     
 }
-

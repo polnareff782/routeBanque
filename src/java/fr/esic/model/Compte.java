@@ -12,50 +12,58 @@ import java.sql.Date;
  * @author marye
  */
 public class Compte {
-      private int id;
-    
+
+    private int id;
+
     private String numcompte;
     private String solde;
-  public static double soldeepargne=500.00 ;
-    private String libelleCp;
     private String numcarte;
-    private boolean etatcarte;
+    public boolean etatcarte;
+    private boolean opposition;
     private String operation;
-   
+
     private Date date_expiration;
     private String typeOperation;
-    private String dateOperation;
-    
-    private User user;
-    
-    public Compte (){
-    
-          }
+    private Date dateOperation;
+    private int montantDecouvert;
 
-    public Compte(String solde, String libelleCp, boolean etatcarte, String operation, Date date_expiration, String typeOperation, String dateOperation, User user) {
-        this.solde = solde;
-        this.libelleCp = libelleCp;
-        this.etatcarte = etatcarte;
-        this.operation = operation;
-        this.date_expiration = date_expiration;
-        this.typeOperation = typeOperation;
-        this.dateOperation = dateOperation;
-        this.user = user;
+    private User user;
+    private Person person;
+
+    public Compte() {
+
     }
 
-    public Compte(String numcompte, String solde, String libelleCp, String numcarte, boolean etatcarte, String operation, Date date_expiration, String typeOperation, String dateOperation, User user) {
+    public Compte(int id, String numcompte, String solde, String numcarte, boolean etatcarte,boolean opposition ,String operation, Date date_expiration, String typeOperation, Date dateOperation, int montantDecouvert, User user, Person person) {
+        this.id = id;
         this.numcompte = numcompte;
         this.solde = solde;
-        this.libelleCp = libelleCp;
         this.numcarte = numcarte;
         this.etatcarte = etatcarte;
+        this.opposition = opposition;  
         this.operation = operation;
         this.date_expiration = date_expiration;
         this.typeOperation = typeOperation;
         this.dateOperation = dateOperation;
+        this.montantDecouvert = montantDecouvert;
         this.user = user;
+        this.person = person;
     }
-    
+
+    public Compte(String numcompte, String solde, String numcarte, boolean etatcarte,boolean opposition ,String operation, Date date_expiration, String typeOperation, Date dateOperation, int montantDecouvert, User user, Person person) {
+        this.numcompte = numcompte;
+        this.solde = solde;
+        this.numcarte = numcarte;
+        this.etatcarte = etatcarte;
+        this.opposition = opposition;  
+        this.operation = operation;
+        this.date_expiration = date_expiration;
+        this.typeOperation = typeOperation;
+        this.dateOperation = dateOperation;
+        this.montantDecouvert = montantDecouvert;
+        this.user = user;
+        this.person = person;
+    }
 
     public int getId() {
         return id;
@@ -81,14 +89,6 @@ public class Compte {
         this.solde = solde;
     }
 
-    public String getLibelleCp() {
-        return libelleCp;
-    }
-
-    public void setLibelleCp(String libelleCp) {
-        this.libelleCp = libelleCp;
-    }
-
     public String getNumcarte() {
         return numcarte;
     }
@@ -104,6 +104,16 @@ public class Compte {
     public void setEtatcarte(boolean etatcarte) {
         this.etatcarte = etatcarte;
     }
+
+    public boolean isOpposition() {
+        return opposition;
+    }
+
+    public void setOpposition(boolean opposition) {
+        this.opposition = opposition;
+    }
+    
+    
 
     public String getOperation() {
         return operation;
@@ -129,12 +139,20 @@ public class Compte {
         this.typeOperation = typeOperation;
     }
 
-    public String getDateOperation() {
+    public Date getDateOperation() {
         return dateOperation;
     }
 
-    public void setDateOperation(String dateOperation) {
+    public void setDateOperation(Date dateOperation) {
         this.dateOperation = dateOperation;
+    }
+
+    public int getMontantDecouvert() {
+        return montantDecouvert;
+    }
+
+    public void setMontantDecouvert(int montantDecouvert) {
+        this.montantDecouvert = montantDecouvert;
     }
 
     public User getUser() {
@@ -144,7 +162,13 @@ public class Compte {
     public void setUser(User user) {
         this.user = user;
     }
-    
-    
+
+    public Person getPerson() {
+        return person;
+    }
+
+    public void setPerson(Person person) {
+        this.person = person;
+    }
 
 }

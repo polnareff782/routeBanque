@@ -1,167 +1,156 @@
--- phpMyAdmin SQL Dump
--- version 4.9.2
--- https://www.phpmyadmin.net/
---
--- Hôte : 127.0.0.1:3306
--- Généré le :  ven. 05 mars 2021 à 12:38
--- Version du serveur :  10.4.10-MariaDB
--- Version de PHP :  7.3.12
+-- MySQL Workbench Forward Engineering
 
-SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
-SET AUTOCOMMIT = 0;
-START TRANSACTION;
-SET time_zone = "+00:00";
+SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0;
+SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0;
+SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION';
 
+-- -----------------------------------------------------
+-- Schema mydb
+-- -----------------------------------------------------
+-- -----------------------------------------------------
+-- Schema banque
+-- -----------------------------------------------------
 
-/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
-/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
-/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
-/*!40101 SET NAMES utf8mb4 */;
+-- -----------------------------------------------------
+-- Schema banque
+-- -----------------------------------------------------
+CREATE SCHEMA IF NOT EXISTS `banque` DEFAULT CHARACTER SET utf8mb4 ;
+USE `banque` ;
 
---
--- Base de données :  `banque`
---
-
--- --------------------------------------------------------
-
---
--- Structure de la table `compte`
---
-
-DROP TABLE IF EXISTS `compte`;
-CREATE TABLE IF NOT EXISTS `compte` (
-  `idCompte` int(11) NOT NULL,
-  `numCp` varchar(20) NOT NULL,
-  `solde` int(50) NOT NULL DEFAULT 500,
-  `libelleCp` varchar(20) NOT NULL,
-  `numCarte` varchar(45) NOT NULL,
-  `etat` tinyblob NOT NULL,
-  `operation` varchar(45) DEFAULT NULL,
-  `dateExpiration` varchar(45) NOT NULL,
-  `client_idperson` int(11) NOT NULL,
-  `person_idperson` int(11) NOT NULL,
-  `typeOperation` varchar(45) NOT NULL,
-  `dateOperation` varchar(45) NOT NULL,
-  `montant` int(11) NOT NULL,
-  PRIMARY KEY (`idCompte`),
-  KEY `fk_compte_person1_idx` (`person_idperson`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
--- --------------------------------------------------------
-
---
--- Structure de la table `historique`
---
-
-DROP TABLE IF EXISTS `historique`;
-CREATE TABLE IF NOT EXISTS `historique` (
-  `idHistorique` int(11) NOT NULL,
-  `contenue` varchar(45) NOT NULL,
-  `date` datetime NOT NULL,
-  `person_idperson` int(11) NOT NULL,
-  PRIMARY KEY (`idHistorique`),
-  KEY `fk_Historique_person1_idx` (`person_idperson`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
--- --------------------------------------------------------
-
---
--- Structure de la table `message`
---
-
-DROP TABLE IF EXISTS `message`;
-CREATE TABLE IF NOT EXISTS `message` (
-  `idtype` int(11) NOT NULL AUTO_INCREMENT,
-  `contenu` varchar(45) NOT NULL,
-  `date_message` datetime NOT NULL,
-  `person_idperson` int(11) NOT NULL,
-  PRIMARY KEY (`idtype`),
-  KEY `fk_message_person1_idx` (`person_idperson`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
--- --------------------------------------------------------
-
---
--- Structure de la table `person`
---
-
-DROP TABLE IF EXISTS `person`;
-CREATE TABLE IF NOT EXISTS `person` (
-  `idperson` int(11) NOT NULL AUTO_INCREMENT,
-  `nom` char(15) NOT NULL,
-  `prenom` char(15) NOT NULL,
-  `telephone` varchar(11) NOT NULL,
-  `sexe` char(15) NOT NULL,
-  `dateNaissance` date NOT NULL,
-  `email` char(150) NOT NULL,
-  `adresse` varchar(60) NOT NULL,
+-- -----------------------------------------------------
+-- Table `banque`.`person`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `banque`.`person` (
+  `idperson` INT(11) NOT NULL AUTO_INCREMENT,
+  `nom` VARCHAR(100) NOT NULL,
+  `prenom` VARCHAR(100)  NOT NULL,
+  `telephone` VARCHAR(100)  NOT NULL,
+  `sexe` CHAR(15) NOT NULL,
+  `dateNaissance` DATE NOT NULL,
+  `email` VARCHAR(100)  NOT NULL,
+  `adresse` VARCHAR(100) NOT NULL,
   PRIMARY KEY (`idperson`),
-  UNIQUE KEY `telephone` (`telephone`),
-  UNIQUE KEY `email` (`email`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+  UNIQUE INDEX `telephone` (`telephone` ASC) ,
+  UNIQUE INDEX `email` (`email` ASC) )
+ENGINE = InnoDB
+AUTO_INCREMENT = 12
+DEFAULT CHARACTER SET = utf8;
 
--- --------------------------------------------------------
+CREATE TABLE IF NOT EXISTS `banque`.`role` (
+  `idrole` INT(11) NOT NULL AUTO_INCREMENT,
+  `libelle` VARCHAR(100)  NOT NULL,
+  PRIMARY KEY (`idrole`))
+ENGINE = InnoDB
+AUTO_INCREMENT = 4
+DEFAULT CHARACTER SET = utf8mb4;
 
---
--- Structure de la table `role`
---
 
-DROP TABLE IF EXISTS `role`;
-CREATE TABLE IF NOT EXISTS `role` (
-  `idrole` int(11) NOT NULL AUTO_INCREMENT,
-  `libelle` varchar(45) NOT NULL,
-  PRIMARY KEY (`idrole`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
--- --------------------------------------------------------
-
---
--- Structure de la table `utilisateur`
---
-
-DROP TABLE IF EXISTS `utilisateur`;
-CREATE TABLE IF NOT EXISTS `utilisateur` (
-  `idutilisateur` int(11) NOT NULL AUTO_INCREMENT,
-  `login` varchar(45) NOT NULL,
-  `mdp` varchar(45) NOT NULL,
-  `idperson` int(11) NOT NULL,
-  `idrole` int(11) NOT NULL,
-  `statut` int(1) NOT NULL DEFAULT 0,
+CREATE TABLE IF NOT EXISTS `banque`.`utilisateur` (
+  `idutilisateur` INT(11) NOT NULL AUTO_INCREMENT,
+  `login` VARCHAR(100)  NOT NULL,
+  `mdp` VARCHAR(100)  NOT NULL,
+  `idperson` INT(11) NOT NULL,
+  `idrole` INT(11) NOT NULL,
+  `statut` INT(11) NOT NULL DEFAULT 1,
   PRIMARY KEY (`idutilisateur`),
-  KEY `fk_identification_person1_idx` (`idperson`),
-  KEY `fk_identification_role1_idx` (`idrole`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+  INDEX `fk_identification_person1_idx` (`idperson` ASC) ,
+  INDEX `fk_identification_role1_idx` (`idrole` ASC) ,
+  CONSTRAINT `fk_identification_person1`
+    FOREIGN KEY (`idperson`)
+    REFERENCES `banque`.`person` (`idperson`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_identification_role1`
+    FOREIGN KEY (`idrole`)
+    REFERENCES `banque`.`role` (`idrole`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB
+AUTO_INCREMENT = 8
+DEFAULT CHARACTER SET = utf8mb4;
 
---
--- Contraintes pour les tables déchargées
---
+-- -----------------------------------------------------
+-- Table `banque`.`compte`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `banque`.`compte` (
+  `idCompte` INT(11) NOT NULL,
+  `numCp` INT(120) NOT NULL DEFAULT cast(rand() * 100000000 as signed),
+  `solde` INT(50) NOT NULL DEFAULT 500,
+  `libelleCp` VARCHAR(100)  NOT NULL DEFAULT 'visa',
+  `numCarte` INT(120) NOT NULL DEFAULT cast(rand() * 100000000 as signed),
+  `etat` TINYINT(4) NOT NULL,
+  `opposition` TINYINT(1) NULL DEFAULT 1,
+  `dateExpiration` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP(),
+  `person_idperson` INT(11) NOT NULL,
+  `TypeOperation` VARCHAR(45) NOT NULL,
+  `dateOperation` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP(),
+  `montantDecouvert` INT(11) NOT NULL,
+  `operation` VARCHAR(45) NOT NULL DEFAULT 'Visa',
+  PRIMARY KEY (`idCompte`),
+  UNIQUE INDEX `numCarte_UNIQUE` (`numCarte` ASC) ,
+  UNIQUE INDEX `numCp_UNIQUE` (`numCp` ASC) ,
+  INDEX `fk_compte_person1_idx` (`person_idperson` ASC) ,
+  CONSTRAINT `person_idperson`
+    FOREIGN KEY (`person_idperson`)
+    REFERENCES `banque`.`person` (`idperson`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB
+DEFAULT CHARACTER SET = utf8;
 
---
--- Contraintes pour la table `compte`
---
-ALTER TABLE `compte`
-  ADD CONSTRAINT `fk_compte_person1` FOREIGN KEY (`person_idperson`) REFERENCES `person` (`idperson`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
---
--- Contraintes pour la table `historique`
---
-ALTER TABLE `historique`
-  ADD CONSTRAINT `fk_Historique_person1` FOREIGN KEY (`person_idperson`) REFERENCES `person` (`idperson`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+-- -----------------------------------------------------
+-- Table `banque`.`historique`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `banque`.`historique` (
+  `idOperation` INT(11) NOT NULL AUTO_INCREMENT,
+  `typeOperation` VARCHAR(45) NOT NULL,
+  `dateOperation` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP(),
+  `MontantOperation` INT(11) NOT NULL,
+  `person_idperson` INT(11) NOT NULL,
+  PRIMARY KEY (`idOperation`),
+  INDEX `fk_Historique_person1_idx` (`person_idperson` ASC) ,
+  CONSTRAINT `fk_Historique_person1`
+    FOREIGN KEY (`person_idperson`)
+    REFERENCES `banque`.`person` (`idperson`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB
+AUTO_INCREMENT = 16
+DEFAULT CHARACTER SET = utf8mb4;
 
---
--- Contraintes pour la table `message`
---
-ALTER TABLE `message`
-  ADD CONSTRAINT `fk_message_person1` FOREIGN KEY (`person_idperson`) REFERENCES `person` (`idperson`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
---
--- Contraintes pour la table `utilisateur`
---
-ALTER TABLE `utilisateur`
-  ADD CONSTRAINT `fk_identification_person1` FOREIGN KEY (`idperson`) REFERENCES `person` (`idperson`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  ADD CONSTRAINT `fk_identification_role1` FOREIGN KEY (`idrole`) REFERENCES `role` (`idrole`) ON DELETE NO ACTION ON UPDATE NO ACTION;
-COMMIT;
+-- -----------------------------------------------------
+-- Table `banque`.`message`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `banque`.`message` (
+  `idMessage` INT(11) NOT NULL AUTO_INCREMENT,
+  `contenuMessage` VARCHAR(100)  NOT NULL,
+  `dateMessage` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP(),
+  `person_idperson` INT(11) NOT NULL,
+  PRIMARY KEY (`idMessage`),
+  INDEX `fk_message_person1_idx` (`person_idperson` ASC) ,
+  CONSTRAINT `fk_message_person1`
+    FOREIGN KEY (`person_idperson`)
+    REFERENCES `banque`.`person` (`idperson`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB
+DEFAULT CHARACTER SET = utf8mb4;
 
-/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
-/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
-/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+
+INSERT INTO `banque`.`person` (`nom`, `prenom`, `telephone`, `sexe`, `dateNaissance`, `email`, `adresse`) VALUES ('Admin', 'Admin', '4564545', 'f', '2021-03-25', 'admin@admin.fr', 'adminnadresse');
+INSERT INTO `banque`.`person` (`nom`, `prenom`, `telephone`, `sexe`, `dateNaissance`, `email`, `adresse`) VALUES ('conseiller', 'conseiller', '4564545', 'f', '2021-03-25', 'conseiller@conseiller.fr', 'conseilleradrsse');
+INSERT INTO `banque`.`person` (`nom`, `prenom`, `telephone`, `sexe`, `dateNaissance`, `email`, `adresse`) VALUES ('client', 'client', '4564545', 'f', '2021-03-25', 'client@client.f', 'clientadresse');
+
+
+INSERT INTO `banque`.`utilisateur` (`login`, `mdp`, `idperson`, `idrole`) VALUES ('admin', '0000', '1', '1');
+INSERT INTO `banque`.`utilisateur` (`login`, `mdp`, `idperson`, `idrole`) VALUES ('conseiller', '0000', '2', '2');
+INSERT INTO `banque`.`utilisateur` (`login`, `mdp`, `idperson`, `idrole`) VALUES ('client', '0000', '8', '3');
+
+
+
+INSERT INTO `banque`.`compte` (`person_idperson`, `TypeOperation`, `montantDecouvert`, `operation`) VALUES ('8', 'depot', '0', 'visa');
+
+INSERT INTO `banque`.`historique` (`typeOperation`, `MontantOperation`, `person_idperson`) VALUES ('depot', '120', '8');
+

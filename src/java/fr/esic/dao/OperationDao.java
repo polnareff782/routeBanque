@@ -17,6 +17,7 @@ import java.util.ArrayList;
  *
  * @author marye
  */
+/*
 public class OperationDao {
     
     	 Connection con=null;
@@ -37,10 +38,9 @@ public class OperationDao {
 			{
 				Operation c=new Operation();
 				
-				c.setNumop(rs.getInt("NumOp"));
-				c.setLibelleop(rs.getString("LibelleOp"));
-				c.setSenseop(rs.getString("SensOp"));
-				c.setMontantop(rs.getInt("MontantOp"));
+				c.setIdOperation(rs.getInt("NumOp"));
+				c.setTypeOperation(rs.getString("LibelleOp"));
+				c.setMontantOperation(rs.getInt("MontantOp"));
 			
 				c.setNumcp(rs.getInt("NumCp"));
 
@@ -195,7 +195,7 @@ public class OperationDao {
 			System.out.println(ex.getMessage());
 		}
 	}
-   */ 
+   
  
-}
+*/
 

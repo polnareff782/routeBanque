@@ -53,8 +53,6 @@
                     <th>Sexe</th>
                     <th>Etat</th>                   
                     <th>Activation Conseillers</th>
-                    <th>Désactivation Conseillers</th>
-
                 </tr>
             </thead>
             <tbody>
@@ -71,8 +69,7 @@
                         <td>${u.statut}</td>
                 <form action="ActiverConseiller" method="POST">
                     <input type="hidden" value="${u.id}" name="iduser">
-                    <td><button  type="submit" class="btn btn-outline-success" onclick="" >Activer compte</button> </td>
-                    <td><button  type="submit" class="btn btn-outline-danger" >Désactiver compte</button> </td>
+                    <td><button  type="submit" class="btn btn-outline-success" onclick="" >Activer/Desactiver compte</button> </td>
 
                 </form>
             </tr>

@@ -5,9 +5,13 @@
  */
 package fr.esic.servlet;
 
+import fr.esic.dao.CompteDao;
 import fr.esic.model.User;
+import fr.esic.model.Compte;
+import fr.esic.model.Person;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -62,35 +66,38 @@ public class MenuClient extends HttpServlet {
             throws ServletException, IOException {
         HttpSession session = request.getSession(true);
         User user = (User) session.getAttribute("user");
+        Person person = user.getPerson();
 
         if (user != null) {
-            
+
             try {
 
+                Compte comptes = CompteDao.getAllCompte(person);
+                
+                
+                request.setAttribute("comptes", comptes);
+                
+                String etat=String.valueOf(comptes.isEtatcarte());
+                request.setAttribute("etat", etat);
+                String opposition=String.valueOf(comptes.isOpposition());
+                request.setAttribute("opposition", opposition);
+
+                request.getRequestDispatcher("/WEB-INF/menuClient.jsp").forward(request, response);
+
             } catch (Exception e) {
+                PrintWriter out = response.getWriter();
+                out.println("expt :" + e.getMessage());
             }
         }
     }
 
-    /**
-     * Handles the HTTP <code>POST</code> method.
-     *
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     */
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         processRequest(request, response);
     }
 
-    /**
-     * Returns a short description of the servlet.
-     *
-     * @return a String containing servlet description
-     */
+    
     @Override
     public String getServletInfo() {
         return "Short description";

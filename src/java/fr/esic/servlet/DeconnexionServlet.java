@@ -17,7 +17,7 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author marye
  */
-@WebServlet(name = "DeconnexionServlet", urlPatterns = {"/Deco"})
+@WebServlet(name = "DeconnexionServlet", urlPatterns = {"/DeconnexionServlet"})
 public class DeconnexionServlet extends HttpServlet {
 
     /**

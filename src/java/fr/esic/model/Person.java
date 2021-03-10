@@ -24,6 +24,13 @@ public class Person {
     public Person() {
     }
 
+    public Person(String nom, String prenom) {
+        this.nom = nom;
+        this.prenom = prenom;
+    }
+
+    
+    
     public Person(int id, String nom, String prenom, String telephone, String sexe, String dateNaissance, String email, String address) {
         this.id = id;
         this.nom = nom;

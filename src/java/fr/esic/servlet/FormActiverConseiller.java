@@ -42,7 +42,7 @@ public class FormActiverConseiller extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet FormActiverConseiller</title>");            
+            out.println("<title>Servlet FormActiverConseiller</title>");
             out.println("</head>");
             out.println("<body>");
             out.println("<h1>Servlet FormActiverConseiller at " + request.getContextPath() + "</h1>");
@@ -77,8 +77,47 @@ public class FormActiverConseiller extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        //processRequest(request, response);
+        String nom = request.getParameter("nom");
+        String prenom = request.getParameter("prenom");
+
+        String login = request.getParameter("login");
+        String password = request.getParameter("mdp");
+
+        String statut = request.getParameter("statut");
+        int stat = Integer.parseInt(statut);
         
+        System.out.println("stat: " + stat);
+
+        Person p = new Person(nom, prenom);
+
+        try {
+            /* int lastId = UserDao.insertPerson(u);
+            u.setIdPerson(lastId);
+            u.setLogin(login);
+            u.setPassword(password);*/
+
+            PersonDao.UpdatePerson(p);
+
+            Person pe = PersonDao.getPersonByNom(nom);
+            System.out.println("person: " + pe);
+
+            User c = new User(login, password, pe, stat);
+
+            if (c.getStatut() == 1) {
+                UserDao.DesactiverConseiller(c);
+
+            } else {
+                UserDao.ActiverConseiller(c);
+
+            }
+
+            request.getRequestDispatcher("AccueilServlet").forward(request, response);
+        } catch (Exception e) {
+            PrintWriter out = response.getWriter();
+            out.println("Exception :" + e.getMessage());
+        }
+
     }
 
     /**

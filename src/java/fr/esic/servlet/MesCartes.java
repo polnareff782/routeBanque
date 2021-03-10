@@ -5,6 +5,10 @@
  */
 package fr.esic.servlet;
 
+import fr.esic.dao.CompteDao;
+import fr.esic.model.Compte;
+import fr.esic.model.Person;
+import fr.esic.model.User;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.ServletException;
@@ -12,23 +16,16 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  *
- * @author marye
+ * @author marye  HttpSession session = request.getSession(true);
+        User user = (User) session.getAttribute("user");
  */
 @WebServlet(name = "MesCartes", urlPatterns = {"/MesCartes"})
 public class MesCartes extends HttpServlet {
 
-    /**
-     * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
-     * methods.
-     *
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
@@ -37,7 +34,7 @@ public class MesCartes extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet MesCartes</title>");            
+            out.println("<title>Servlet MesCartes</title>");
             out.println("</head>");
             out.println("<body>");
             out.println("<h1>Servlet MesCartes at " + request.getContextPath() + "</h1>");
@@ -46,19 +43,28 @@ public class MesCartes extends HttpServlet {
         }
     }
 
-    // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
-    /**
-     * Handles the HTTP <code>GET</code> method.
-     *
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     */
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-this.getServletContext().getRequestDispatcher("/WEB-INF/MesCartes.jsp").forward(request, response);
+        HttpSession session = request.getSession(true);
+        User user = (User) session.getAttribute("user");
+        Person person = user.getPerson();
+
+        if (user != null) {
+
+            try {
+
+                Compte comptes = CompteDao.getAllCompte(person);
+
+                request.setAttribute("comptes", comptes);
+
+                this.getServletContext().getRequestDispatcher("/WEB-INF/MesCartes.jsp").forward(request, response);
+
+            } catch (Exception e) {
+                PrintWriter out = response.getWriter();
+                out.println("expt :" + e.getMessage());
+            }
+        }
 
     }
 
@@ -73,14 +79,49 @@ this.getServletContext().getRequestDispatcher("/WEB-INF/MesCartes.jsp").forward(
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+
+        HttpSession session = request.getSession(true);
+        User user = (User) session.getAttribute("user");
+        Person person = user.getPerson();
+
+        if (user != null) {
+
+            try {
+                int idcarte = Integer.parseInt(request.getParameter("numcarte"));
+                Compte comptes = CompteDao.getAllCompte(person);
+                int solde = Integer.parseInt(comptes.getSolde());
+                int montantDecouvert = comptes.getMontantDecouvert();
+                
+                int solde_total=solde+=montantDecouvert;
+                request.setAttribute("solde_total", solde_total);
+
+                
+                String etat = String.valueOf(comptes.isEtatcarte());
+                request.setAttribute("etat", etat);
+                String opposition = String.valueOf(comptes.isOpposition());
+                request.setAttribute("opposition", opposition);
+                
+                if (opposition.equals("true")) {
+                    CompteDao.OppositionCarte(idcarte);
+                } 
+                
+                
+                else if (etat.equals("false")) {
+                    CompteDao.ActiveCarte(idcarte);
+                } else {
+                    CompteDao.DesactiverCarte(idcarte);
+                }
+
+                response.sendRedirect("MesCartes");
+
+            } catch (Exception e) {
+                PrintWriter out = response.getWriter();
+                out.println("expt :" + e.getMessage());
+            }
+        }
+
     }
 
-    /**
-     * Returns a short description of the servlet.
-     *
-     * @return a String containing servlet description
-     */
     @Override
     public String getServletInfo() {
         return "Short description";

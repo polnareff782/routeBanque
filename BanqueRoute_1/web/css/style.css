@@ -1,0 +1,183 @@
+q/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : 19 févr. 2021, 12:34:07
+    Author     : polnareff
+*/
+
+.titre{
+    text-align: center;
+    color : tomato;
+    letter-spacing: 5px;
+}
+
+.name {
+    font-weight: bold;
+}
+
+.sousTitre{
+    text-align: center;
+    color : pink;
+    letter-spacing: 2px;
+
+}
+
+.center{
+    text-align: center;
+}
+
+.p-pres{
+    letter-spacing: 3px;
+    font-size: large;
+}
+
+.contenu{
+    margin-left: 250px;
+    margin-right: 250px;
+}
+
+.menu{
+    font-size: x-large;
+}
+
+.marge-top{
+    margin-top: 50px;
+}
+
+.pipe{
+    color : turquoise;
+    letter-spacing: 3px;
+}
+
+a{
+    color: pink;
+}
+
+a:hover{
+    color: red;
+}
+
+.head-table-user{
+    color: blue;
+    background-color: green;
+}
+
+.btn{
+    color: lightgray;
+    background-color: brown;
+}
+
+.btn:hover
+{
+    color: blueviolet;
+}
+
+.my-label{
+    color: darkgray;
+    letter-spacing: 3px;
+    font-size: large;
+
+}
+
+.content-login{
+    margin :auto;
+    width: 25%;
+}
+
+.shadow-card{
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.30)
+}
+
+.card-title-perso{
+    color : white;
+}
+
+.card-header-back{
+    background-color : rgb(40, 71, 192) !important;
+}
+
+.card-perso-box{
+box-shadow: 0 20px 49px rgba(0,0,0,0.30) !important;
+}
+
+.press p {
+    line-height: 1.7em;
+}
+
+.press a:link {
+    text-decoration: underline;
+}
+
+.press h4 {
+    padding-top: 20px;
+    font-weight: bold;
+    letter-spacing: 1px;
+}
+
+.titre-h3 {
+    margin-top: 1px;
+    padding-top: 15px;
+    padding-left: 50px;
+    width: auto;
+    height: 3.5em;
+}
+
+.h3 {
+    background-color: #375a7f;
+    font-size: 1.75rem;
+    font-weight: 500;
+    font-size: 1.75rem;
+    margin-block-start: 1em;
+    margin-block-end: 1em;
+    margin-inline-start: 0px;
+    margin-inline-end: 0px;
+}
+
+*,
+*::before,
+*::after{
+
+    margin:0;
+    padding: 0;
+    box-sizing: border-box;
+}
+html{
+    font-size: auto;
+    font-family: 'Noto Sans JP', sans-serif;
+}
+.main_div{
+    widows: 50vw;
+    height: 50vh;
+    background-color: #4f8fff;
+    display: grid;
+    place-items: center;
+}
+.title
+{ 
+   ext-transform: uppercase;
+ letter-spacing :0.2rem;
+word-spacing: 0.5rem;
+color:#00f;
+text-align: center;
+margin :0 0 0.5rem 0;
+padding: 1rem;
+text-shadow: 4px 4px 4px rgb(245, 244, 244);
+}
+.container{
+ 
+    width:45rem;
+    height: 75rem;
+    background-color: #fff;
+    border-radius:2rem ;
+    -webkit-border-radius:2rem ;
+    -moz-border-radius:2rem ;
+    -ms-border-radius:2rem ;
+    -o-border-radius:2rem ;
+    box-shadow: 0 1.2rem 3rem 0.5rem rgba(0,0,0,0.2);
+    padding: 2rem;
+    text-align: center;
+}
+

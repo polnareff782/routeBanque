@@ -28,76 +28,47 @@
                 <span class="name">${client.prenom} ${client.nom}  </span> </h6>
 
             <div class="container-fluid">
-
                 <nav class="navbar navbar-expand-md  navbar-white bg-white">
-
                     <div class="collapse navbar-collapse  justify-content-between" id="navbarSupportedContent">
-
                         <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-
                             <li class="nav-item">
-
-                                <a class="nav-link active font-weight-bold px-3 px-3" aria-current="page" href="#">Comptes et cartes</a>
-
+                                <a class="nav-link active font-weight-bold px-3 px-3" aria-current="page" href="MenuClient">Comptes et cartes</a>
                             </li>
-
                             <li class="nav-item">
-
                                 <a class="nav-link active font-weight-bold px-3" href="Emprunter">Emprunter</a>
-
                             </li>
-
                             <li class="nav-item">
                                 <a class="nav-link active font-weight-bold px-3" href="Epargner">Epargner</a>
-
                             </li>  
-
                             <li class="nav-item">
                                 <a class="nav-link active font-weight-bold px-3" href="NosConseil">Nos conseils</a>
-
                             </li>
-
                             <li class="nav-item">
                                 <a class="nav-link active font-weight-bold px-3" href="Autres">Autres</a>
-
                             </li>
-
                         </ul>
 
 
 
                         <ul class="navbar-nav">
-
-
                             <li class="nav-item">
-
                                 <a class="nav-link active font-weight-bold px-3 fas fa-bell fa-2x material-icons "style ="color:blue; "href="#" title="Pas de Notification" data-toggle="popover" data-trigger="hover" data-content="pas de notifications"></a>
-
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link active font-weight-bold px-3 fas fa-comments fa-2x material-icons " style ="color:blue;"href=#></a>
-
+                                <a class="nav-link active font-weight-bold px-3 fas fa-comments fa-2x material-icons " style ="color:blue;"href=MessageServlet></a>
                             </li>
-
-
                             <li class="nav-item">
-                             
-                                <a class="nav-link active font-weight-bold px-3 fas fa-sign-out-alt fa-2x material-icons" href="DeconnexionServlet">
-                                    
+                                <a class="nav-link active font-weight-bold px-3 fas fa-sign-out-alt fa-2x material-icons" href="DeconnexionServlet">  <span> <h6>
+                                               
+                                                ${user.person.nom}
+                                        </h6>
+                                    </span>
                                 </a>
-
                             </li>
-
                         </ul>
-
-
                     </div>
                 </nav>
-
             </div>
         </div>
-
-        
-        
     </body>
 </html>

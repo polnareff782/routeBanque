@@ -11,51 +11,61 @@ package fr.esic.model;
  */
 public class Operation {
     
-   
       
-	private int numop;
-	private String libelleop;
-	private int montantop;
-	private String senseop;
-	private String dateop;
-	private int numcp;
-	public int getNumop() {
-		return numop;
-	}
-	public void setNumop(int numop) {
-		this.numop = numop;
-	}
-	public String getLibelleop() {
-		return libelleop;
-	}
-	public void setLibelleop(String libelleop) {
-		this.libelleop = libelleop;
-	}
-	public int getMontantop() {
-		return montantop;
-	}
-	public void setMontantop(int montantop) {
-		this.montantop = montantop;
-	}
-	public String getSenseop() {
-		return senseop;
-	}
-	public void setSenseop(String senseop) {
-		this.senseop = senseop;
-	}
-	public String getDateop() {
-		return dateop;
-	}
-	public void setDateop(String dateop) {
-		this.dateop = dateop;
-	}
-	public int getNumcp() {
-		return numcp;
-	}
-	public void setNumcp(int numcp) {
-		this.numcp = numcp;
-	}
+	private int idOperation;
+	private String typeOperation;
+	private int montantOperation;
+	private String dateOperation;
+        private Person person;
+
+    public Operation() {
+    }
+
+    public Operation(String typeOperation, int montantOperation, String dateOperation,Person person) {
+        this.typeOperation = typeOperation;
+        this.montantOperation = montantOperation;
+        this.dateOperation = dateOperation;
+        this.person = person;
+    }
+
+    public int getIdOperation() {
+        return idOperation;
+    }
+
+    public void setIdOperation(int idOperation) {
+        this.idOperation = idOperation;
+    }
+
+    public String getTypeOperation() {
+        return typeOperation;
+    }
+
+    public void setTypeOperation(String typeOperation) {
+        this.typeOperation = typeOperation;
+    }
+
+    public int getMontantOperation() {
+        return montantOperation;
+    }
+
+    public void setMontantOperation(int montantOperation) {
+        this.montantOperation = montantOperation;
+    }
+
+    public String getDateOperation() {
+        return dateOperation;
+    }
+
+    public void setDateOperation(String dateOperation) {
+        this.dateOperation = dateOperation;
+    }
+
+    public Person getPerson() {
+        return person;
+    }
+
+    public void setPerson(Person person) {
+        this.person = person;
+    }
 
 }
-
-    
