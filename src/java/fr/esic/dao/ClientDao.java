@@ -1,5 +1,6 @@
 package fr.esic.dao;
 
+import fr.esic.model.Compte;
 import fr.esic.model.Person;
 import fr.esic.model.Role;
 import fr.esic.model.User;
@@ -96,7 +97,7 @@ public class ClientDao {
 
         List<User> users = new ArrayList<>();
 
-        String sql = "SELECT * FROM utilisateur u INNER JOIN person p ON p.idperson = u.idperson WHERE idrole=3";
+        String sql = "SELECT c.numCp ,u.idutilisateur, p.idperson, p.nom, p.prenom, u.idrole, c.numCarte, c.etat FROM utilisateur u INNER JOIN person p INNER JOIN compte c ON p.idperson = u.idperson AND p.idperson = c.person_idperson WHERE u.idrole=3";
 
         Connection connexion = AccessBd.getConnection();
 
@@ -106,24 +107,26 @@ public class ClientDao {
         while (rs.next()) {
             User u = new User();
             u.setId(rs.getInt("idutilisateur"));
-            u.setLogin(rs.getString("login"));
-            u.setMdp(rs.getString("mdp"));
+           
 
             Person p = new Person();
             p.setId(rs.getInt("idperson"));
             p.setNom(rs.getString("nom"));
             p.setPrenom(rs.getString("prenom"));
-            p.setSexe(rs.getString("sexe"));
-            p.setTelephone(rs.getString("telephone"));
-            p.setEmail(rs.getString("email"));
-            p.setAddress(rs.getString("adresse"));
-            p.setDateNaissance(rs.getString("dateNaissance"));
+           
             u.setPerson(p);
 
             Role r = new Role();
             r.setId(rs.getInt("idrole"));
             u.setRole(r);
-
+            
+            Compte c = new Compte();
+            c.setNumcarte(rs.getString("numCarte"));
+            c.setNumcompte(rs.getString("numCp"));
+            c.setEtatcarte(rs.getBoolean("etat"));
+           
+            //u.setCompte(c);
+            
             users.add(u);
         }
         return users;

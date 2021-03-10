@@ -38,7 +38,7 @@
                             <a class="nav-link" href="#">Activer/Désactiver compte client 	</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#">Activer/Désactiver carte client </a>
+                            <a class="nav-link" href="listeCarteClient">Activer/Désactiver carte client </a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="#">Historique des comptes clients  </a>
