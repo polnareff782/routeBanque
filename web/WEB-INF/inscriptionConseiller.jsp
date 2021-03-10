@@ -13,6 +13,27 @@
     </head>
    
     <body>
+        
+         <nav class="navbar navbar-expand-lg navbar-light bg-light">
+                <a class="navbar-brand" href="#">CDA 2020</a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse " id="navbarNav">
+                    <ul class="navbar-nav nav-fill w-100">
+                        <li class="nav-item active">
+                            <a class="nav-link" href="AccueilServlet">Accueil</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="Deco"><span class="material-icons red600">
+                                    logout
+                                </span>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </nav>
+        
        <div class="container mt-4">
             <form action="InscriptionConseillerServlet" method="POST">
                 <div class="content-login">

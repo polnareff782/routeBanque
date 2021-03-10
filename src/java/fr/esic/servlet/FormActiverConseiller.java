@@ -12,23 +12,18 @@ import fr.esic.model.Person;
 import fr.esic.model.User;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.sql.SQLException;
-import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 /**
  *
  * @author Nathan Ghozlan
  */
-@WebServlet(name = "ModifProfilServelt", urlPatterns = {"/ModifProfilCons"})
-public class ModifProfilConseillerServelt extends HttpServlet {
+@WebServlet(name = "FormActiverConseiller", urlPatterns = {"/FormActiverConseiller"})
+public class FormActiverConseiller extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -47,10 +42,10 @@ public class ModifProfilConseillerServelt extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet ModifProfilServelt</title>");
+            out.println("<title>Servlet FormActiverConseiller</title>");
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>Servlet ModifProfilServelt at " + request.getContextPath() + "</h1>");
+            out.println("<h1>Servlet FormActiverConseiller at " + request.getContextPath() + "</h1>");
             out.println("</body>");
             out.println("</html>");
         }
@@ -68,24 +63,7 @@ public class ModifProfilConseillerServelt extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-
-        HttpSession session = request.getSession(true);
-        User user = (User) session.getAttribute("user");
-        if (user != null) {
-            try {
-                List<User> users = ConseillerDao.getAllConseiller();
-
-                request.setAttribute("users", users);
-                request.getRequestDispatcher("WEB-INF/modifProfilConseiller.jsp").forward(request, response);
-            } catch (Exception e) {
-                PrintWriter out = response.getWriter();
-                out.println("expt :" + e.getMessage());
-            }
-
-        } else {
-            request.setAttribute("msg", "tu n'es pas connecter");
-            request.getRequestDispatcher("index.jsp").forward(request, response);
-        }
+        processRequest(request, response);
     }
 
     /**
@@ -99,17 +77,47 @@ public class ModifProfilConseillerServelt extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        String iduser = request.getParameter("iduser");
-        int id = Integer.parseInt(iduser);
+        //processRequest(request, response);
+        String nom = request.getParameter("nom");
+        String prenom = request.getParameter("prenom");
+
+        String login = request.getParameter("login");
+        String password = request.getParameter("mdp");
+
+        String statut = request.getParameter("statut");
+        int stat = Integer.parseInt(statut);
+        
+        System.out.println("stat: " + stat);
+
+        Person p = new Person(nom, prenom);
 
         try {
-            User u = UserDao.getUserById(id);
-            request.setAttribute("user", u);
-            request.getRequestDispatcher("WEB-INF/formModifProfilConseiller.jsp").forward(request, response);
+            /* int lastId = UserDao.insertPerson(u);
+            u.setIdPerson(lastId);
+            u.setLogin(login);
+            u.setPassword(password);*/
+
+            PersonDao.UpdatePerson(p);
+
+            Person pe = PersonDao.getPersonByNom(nom);
+            System.out.println("person: " + pe);
+
+            User c = new User(login, password, pe, stat);
+
+            if (c.getStatut() == 1) {
+                UserDao.DesactiverConseiller(c);
+
+            } else {
+                UserDao.ActiverConseiller(c);
+
+            }
+
+            request.getRequestDispatcher("AccueilServlet").forward(request, response);
         } catch (Exception e) {
             PrintWriter out = response.getWriter();
-            out.println("expt :" + e.getMessage());
+            out.println("Exception :" + e.getMessage());
         }
+
     }
 
     /**

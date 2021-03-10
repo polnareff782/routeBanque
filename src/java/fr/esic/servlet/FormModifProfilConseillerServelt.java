@@ -41,7 +41,7 @@ public class FormModifProfilConseillerServelt extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet FormModifProfilConseillerServelt</title>");            
+            out.println("<title>Servlet FormModifProfilConseillerServelt</title>");
             out.println("</head>");
             out.println("<body>");
             out.println("<h1>Servlet FormModifProfilConseillerServelt at " + request.getContextPath() + "</h1>");
@@ -49,7 +49,6 @@ public class FormModifProfilConseillerServelt extends HttpServlet {
             out.println("</html>");
         }
     }
-    
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
@@ -78,6 +77,11 @@ public class FormModifProfilConseillerServelt extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         //processRequest(request, response);
+
+        /*
+        String idperson = request.getParameter("idperson");
+        int id = Integer.parseInt(idperson);*/
+        
         String nom = request.getParameter("nom");
         String prenom = request.getParameter("prenom");
 
@@ -98,14 +102,18 @@ public class FormModifProfilConseillerServelt extends HttpServlet {
             u.setLogin(login);
             u.setPassword(password);*/
 
-//            PersonDao.UpdatePerson(nom, prenom, telephone, sexe, dateNaiss, email, adresse, p.getId());
-            
+            PersonDao.UpdatePerson(p);
+
             Person pe = PersonDao.getPersonByEmail(email);
+            //Person pe = PersonDao.getPersonById(id);
+            //System.out.println("person: " + pe);
+            //System.out.println("id: " + id);
+
             User c = new User(login, password, pe);
 
-//            ConseillerDao.UpdateConseiller(login, nom, c.getId());
+            ConseillerDao.UpdateConseiller(c);
 
-            request.getRequestDispatcher("index.jsp").forward(request, response);
+            request.getRequestDispatcher("AccueilServlet").forward(request, response);
         } catch (Exception e) {
             PrintWriter out = response.getWriter();
             out.println("Exception :" + e.getMessage());

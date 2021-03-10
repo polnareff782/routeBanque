@@ -7,8 +7,8 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
-    
-     <head>
+
+    <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>AC MILAN</title>
@@ -17,9 +17,30 @@
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet"
               integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
     </head>
-   
+
     <body>
-       <div class="container mt-4">
+
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+            <a class="navbar-brand" href="#">CDA 2020</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse " id="navbarNav">
+                <ul class="navbar-nav nav-fill w-100">
+                    <li class="nav-item active">
+                        <a class="nav-link" href="AccueilServlet">Accueil</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="Deco"><span class="material-icons red600">
+                                logout
+                            </span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+
+        <div class="container mt-4">
             <form action="inscriptionAdmin" method="POST">
                 <div class="content-login">
                     <div class="card shadow-card">
@@ -65,8 +86,8 @@
                                     <input type="text" id="sexe" class="form-control" name="adresse">
                                 </div>
                                 <div class="d-grid gap-2">
-                                    <button type="submit" class="btn btn-primary btn-block" onclick="location.href='inscription'">Inscription</button>
-                                    <button type="button" class="btn btn-success btn-block" onclick="location.href='login'">Se connecter</button>
+                                    <button type="submit" class="btn btn-primary btn-block" onclick="location.href = 'inscription'">Inscription</button>
+                                    <button type="button" class="btn btn-success btn-block" onclick="location.href = 'login'">Se connecter</button>
 
                                 </div>
 

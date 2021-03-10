@@ -25,6 +25,15 @@ public class User {
         this.person = person;
     }
 
+    public User(String login, String mdp, Person person, int statut) {
+        this.login = login;
+        this.mdp = mdp;
+        this.person = person;
+        this.statut = statut;
+    }
+    
+    
+
     public User(int id, String login, String mdp, Person person, Role role, int statut) {
         this.id = id;
         this.login = login;

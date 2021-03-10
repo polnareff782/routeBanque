@@ -18,7 +18,7 @@
         <title>JSP Page</title>
     </head>
     <body>
-        <div class="container">
+        <div>
 
             <nav class="navbar navbar-expand-lg navbar-light bg-light">
                 <a class="navbar-brand" href="#">CDA 2020</a>
@@ -46,16 +46,16 @@
             <table class="table">
                 <thead>
                     <tr class="table-active">
-                        <th>ID</th>
-                        <th>LOGIN</th>
-                        <th>PASSWORD</th>
+                        <!--<th>ID</th>-->
                         <th>Nom</th>                    
                         <th>Prenom</th>
                         <th>Sexe</th>
                         <th>Naissance</th>
                         <th>Téléphone</th>
                         <th>Mail</th>
-                        <th>Adresse</th>                    
+                        <th>Adresse</th> 
+                        <th>LOGIN</th>
+                        <th>PASSWORD</th>
                         <th>MODIFICATIONS PROFILS</th>
                     </tr>
                 </thead>
@@ -64,9 +64,7 @@
                     <c:forEach items="${users}" var="u">
 
                         <tr style="border: 1px solid black;">
-                            <td>${u.id}</td>
-                            <td>${u.login}</td>
-                            <td>${u.mdp}</td>
+                            <!--<td>${u.person.id}</td>-->
                             <td>${u.person.nom}</td>
                             <td>${u.person.prenom}</td>
                             <td>${u.person.sexe}</td>
@@ -74,8 +72,12 @@
                             <td>${u.person.telephone}</td>
                             <td>${u.person.email}</td>
                             <td>${u.person.address}</td>
+                            <td>${u.login}</td>
+                            <td>${u.mdp}</td>
                     <form action="ModifProfilCons" method="POST">
                         <input type="hidden" value="${u.id}" name="iduser">
+                        <input type="hidden" value="${u.person.id}" name="idperson">
+
                         <td><button  type="submit" class="btn btn-outline-success" >Modifier Infos Profil</button> </td>
                     </form>
                     </tr>

@@ -145,7 +145,74 @@ public class AccueilServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        //processRequest(request, response);
+        HttpSession session = request.getSession(true);
+        User user = (User) session.getAttribute("user");
+        if (user != null) {
+            try {
+                List<User> users = UserDao.getAll();
+                request.setAttribute("users", users);
+                switch (user.getRole().getId()) {
+                    case 1:
+                        this.getServletContext().getRequestDispatcher("/WEB-INF/homeAdmin.jsp").forward(request, response);
+                        break;
+                    case 2:
+                        this.getServletContext().getRequestDispatcher("/WEB-INF/homeConseiller.jsp").forward(request, response);
+                        break;
+                    case 3:
+                        this.getServletContext().getRequestDispatcher("/WEB-INF/homeClient.jsp").forward(request, response);
+                        break;
+                    default:
+                        break;
+                }
+            } catch (Exception e) {
+                PrintWriter out = response.getWriter();
+                out.println("expt :" + e.getMessage());
+            }
+
+        } else {
+            request.setAttribute("msg", "tu n'es pas connecter");
+            request.getRequestDispatcher("index.jsp").forward(request, response);
+        }
+
+        String id = request.getParameter("id");
+        int idu = Integer.parseInt(id);
+        System.out.println("id: " + id);
+
+        try {
+
+            User u = UserDao.getUserById(idu);
+
+            if (u != null) {
+                request.getSession(true).setAttribute("user", u);
+                // remettre en menuAdmin
+                //this.getServletContext().getRequestDispatcher("/WEB-INF/menuAdmin.jsp").forward(request, response);
+
+                switch (u.getRole().getId()) {
+                    case 1:
+                        this.getServletContext().getRequestDispatcher("/WEB-INF/homeAdmin.jsp").forward(request, response);
+                        break;
+                    case 2:
+                        this.getServletContext().getRequestDispatcher("/WEB-INF/homeConseiller.jsp").forward(request, response);
+                        break;
+                    case 3:
+                        this.getServletContext().getRequestDispatcher("/WEB-INF/homeClient.jsp").forward(request, response);
+                        break;
+                    default:
+                        break;
+                }
+
+                //response.sendRedirect("memos");
+            } else {
+                request.setAttribute("msg", "identifiants incorrects!!");
+                this.getServletContext().getRequestDispatcher("/index.jsp").forward(request, response);
+            }
+
+        } catch (Exception e) {
+            PrintWriter out = response.getWriter();
+            out.println("err" + e.getMessage());
+
+        }
     }
 
     /**
