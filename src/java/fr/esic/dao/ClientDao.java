@@ -109,6 +109,7 @@ public class ClientDao {
             u.setId(rs.getInt("idutilisateur"));
            
 
+            
             Person p = new Person();
             p.setId(rs.getInt("idperson"));
             p.setNom(rs.getString("nom"));

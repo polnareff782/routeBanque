@@ -66,7 +66,7 @@
                             <td>${u.person.nom}</td>
                             <td>${u.person.prenom}</td>
                             <td>${u.person.address}</td>
-                    <form action="ModifProfilCons" method="POST">
+                    <form action="modifProfilClient" method="POST">
                         <input type="hidden" value="${u.id}" name="iduser">
                         <td><button  type="submit" class="btn btn-outline-success" >Modifier Infos Profil</button> </td>
                     </form>
