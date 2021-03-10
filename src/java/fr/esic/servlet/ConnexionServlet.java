@@ -38,7 +38,7 @@ public class ConnexionServlet extends HttpServlet {
             out.println("</html>");
         }
     }
-    
+   
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
@@ -67,10 +67,16 @@ public class ConnexionServlet extends HttpServlet {
                         break;
                     case 2:
                         this.getServletContext().getRequestDispatcher("/WEB-INF/homeConseiller.jsp").forward(request, response);
+                         
                         break;
                     case 3:
+
                        // this.getServletContext().getRequestDispatcher("/WEB-INF/homeClient.jsp").forward(request, response);
                         response.sendRedirect("MenuClient");
+
+                       // this.getServletContext().getRequestDispatcher("/WEB-INF/menuClient.jsp").forward(request, response);
+                      //  response.sendRedirect("MenuClient");
+
                         break;
                     default:
                         break;
