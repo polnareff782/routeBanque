@@ -5,13 +5,21 @@
  */
 package fr.esic.servlet;
 
+import fr.esic.dao.CompteDao;
+import fr.esic.dao.MessageDao;
+import fr.esic.model.Compte;
+import fr.esic.model.Message;
+import fr.esic.model.Person;
+import fr.esic.model.User;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  *
@@ -37,7 +45,7 @@ public class MessageServlet extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet MessageServlet</title>");            
+            out.println("<title>Servlet MessageServlet</title>");
             out.println("</head>");
             out.println("<body>");
             out.println("<h1>Servlet MessageServlet at " + request.getContextPath() + "</h1>");
@@ -58,7 +66,37 @@ public class MessageServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        this.getServletContext().getRequestDispatcher("/WEB-INF/Message.jsp").forward(request, response);
+        HttpSession session = request.getSession(true);
+        User user = (User) session.getAttribute("user");
+        Person person = user.getPerson();
+
+        
+        if (user != null) {
+            try {
+                Compte comptes = CompteDao.getAllCompte(person);
+                 int idperson = person.getId();
+                request.setAttribute("comptes", comptes);
+                List<Message> messages = MessageDao.AfficheContenu(idperson);
+                request.setAttribute("messages", messages);
+
+                List<Message> message=MessageDao.getMessageConseiller();
+                request.setAttribute("message", message);
+
+                
+                
+                
+                
+                request.getRequestDispatcher("WEB-INF/Message.jsp").forward(request, response);
+            } catch (Exception e) {
+                PrintWriter out = response.getWriter();
+                out.println("expt :" + e.getMessage());
+            }
+
+        } else {
+            request.setAttribute("msg", "Connectez-vous");
+            request.getRequestDispatcher("index.jsp").forward(request, response);
+        }
+
     }
 
     /**
@@ -72,6 +110,28 @@ public class MessageServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+
+        HttpSession session = request.getSession(true);
+        User user = (User) session.getAttribute("user");
+        if (user != null) {
+            try {
+
+                int idperson = Integer.parseInt(request.getParameter("id"));
+                String contenu = request.getParameter("contenu");
+
+                MessageDao.InsertMessage(contenu, idperson);
+
+                request.getRequestDispatcher("WEB-INF/Message.jsp").forward(request, response);
+            } catch (Exception e) {
+                PrintWriter out = response.getWriter();
+                out.println("expt :" + e.getMessage());
+            }
+
+        } else {
+            request.setAttribute("msg", "Connectez-vous");
+            request.getRequestDispatcher("index.jsp").forward(request, response);
+        }
+
     }
 
     /**

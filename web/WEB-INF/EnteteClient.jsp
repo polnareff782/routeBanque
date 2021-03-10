@@ -25,7 +25,7 @@
        
         <div class="container center mt-2">
             <h6 class="titre text-danger">
-                <span class="name">${client.prenom} ${client.nom}  </span> </h6>
+                <span class="name">  </span> </h6>
 
             <div class="container-fluid">
                 <nav class="navbar navbar-expand-md  navbar-white bg-white">

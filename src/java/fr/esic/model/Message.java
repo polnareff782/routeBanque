@@ -35,11 +35,11 @@ public class Message {
         this.contenuMessage = contenuMessage;
     }
 
-    public Date getDate_message() {
+    public Date getDateMessage() {
         return dateMessage;
     }
 
-    public void setDate_message(Date dateMessage) {
+    public void setDateMessage(Date dateMessage) {
         this.dateMessage = dateMessage;
     }
 
@@ -51,6 +51,7 @@ public class Message {
         this.person = person;
     }
 
+    
     
     
 }

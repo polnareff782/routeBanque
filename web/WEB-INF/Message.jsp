@@ -20,39 +20,45 @@
     </head>
 
 
-    <body>
-        <br><br><br>
+    <body><br><br><br>
+
+        <form action="MessageServlet?id=${comptes.person.id}" method="post">
+            <div class="container">
+                <div class="row"> 
+                    <div id="accordion" class="col-md-4 mb-2">
+                        <div class="card">
+                            <div class="card-header">
+                                <a class="card-link text-danger " data-toggle="collapse" href="#collapseOne" >
+                                    Nouveau message 
+                                </a>
+                            </div>
+                            <div id="collapseOne" class="collapse show" data-parent="#accordion">
+                                <div class="card-body">
+
+                                    <div class="mb-3">
+                                        <input class="form-control" type="text" placeholder="A :" aria-label="Disabled input example" >
+                                    </div>
+                                    <div class="mb-3">
+                                        <input class="form-control" type="text" aria-label="objet" placeholder="Objet">
+                                        <textarea class="form-control" name="contenu" id="exampleFormControlTextarea1" rows="3" placeholder="Rédiger votre message"></textarea>
+                                    </div>
+
+                                    <button type="submit" class="btn btn-success ">Envoyer</button>
+
+
+
+
+                                </div>
+                            </div>
+                        </div>  
+                    </div>
+                </div>  
+            </div>
+
+        </form>
 
         <div class="container">
-            <div class="row">
-                <div id="accordion" class="col-md-4 mb-2">
-                    <div class="card">
-                        <div class="card-header">
-                            <a class="card-link text-danger " data-toggle="collapse" href="#collapseOne" >
-                                Nouveau message
-                            </a>
-                        </div>
-                        <div id="collapseOne" class="collapse show" data-parent="#accordion">
-                            <div class="card-body">
-
-                                <div class="mb-3">
-                                     <input class="form-control" type="text" placeholder="A :" aria-label="Disabled input example" disabled readonly>
-                                </div>
-                                <div class="mb-3">
-                                     <input class="form-control" type="text" aria-label="objet" placeholder="Objet">
-                                    <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" placeholder="Rédiger votre message"></textarea>
-                                </div>
-
-                                <button type="submit" class="btn btn-success ">Envoyer</button>
-                                
-
-
-
-                            </div>
-                        </div>
-                    </div>  
-                </div>
-
+            <div class="row"> 
                 <div id="accordion" class="col-md-4 mb-2">
                     <div class="card ">
                         <div class="card-header">
@@ -61,29 +67,41 @@
                             </a>
                         </div>
                         <div id="collapseTwo" class="collapse" data-parent="#accordion">
+                                 <c:forEach items="${message}" var="m">
+                                
                             <div class="card-body">
-                                Lorem ipsum..
+                                 ${m.contenuMessage}    ${m.dateMessage}
                             </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div id="accordion" class="col-md-4 mb-2">
-                    <div class="card">
-                        <div class="card-header">
-                            <a class="collapsed card-link" data-toggle="collapse" href="#collapseThree">
-                                Messages envoyés
-                            </a>
-                        </div>
-                        <div id="collapseThree" class="collapse" data-parent="#accordion">
-                            <div class="card-body">
-                                Lorem 
-                            </div>
+                                </c:forEach>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
 
-    </body>
+
+        <div class="container">
+            <div class="row"> 
+                <div id="accordion" class="col-md-4 mb-2">
+                    <div class="card">
+                        <div class="card-header">
+                            <input  hidden type="test" name="idperson" value="${comptes.person.id}">
+                            <a class="collapsed card-link" data-toggle="collapse" href="#collapseThree">
+                                Messages envoyés
+                            </a>
+                        </div>
+                        <div id="collapseThree" class="collapse" data-parent="#accordion">
+                            <c:forEach items="${messages}" var="m">
+                                
+                            <div class="card-body">
+                                 ${m.contenuMessage}
+                            </div>
+                                </c:forEach>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    
+</body>
 </html>
