@@ -77,7 +77,7 @@ public class ActiverConseillerServlet extends HttpServlet {
             }
 
         } else {
-            request.setAttribute("msg", "tu n'es pas connecter");
+            request.setAttribute("msg", "Not conected");
             request.getRequestDispatcher("index.jsp").forward(request, response);
         }
     }

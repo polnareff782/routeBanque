@@ -21,6 +21,7 @@
             <h1>Bonjour ${Person.nom} !</h1>
 
             <h5>Listes des clients</h5>
+            <form action="activerClient" method="POST">
             <table class="table table-hover">
                 <thead>
                     <tr class="table-active">
@@ -44,18 +45,20 @@
                             <td>${u.person.nom}</td>
                             <td>${u.person.prenom}</td>
                             <td>${u.statut}</td>
-                    <form action="activerClient" method="POST">
-                        <input type="hidden" value="${u.id}" name="iduser">
+                    
+                            
                         <td>
                             <button  type="submit" class="btn btn-outline-success" >activer/desactiver client</button> 
                         </td>
-                    </form>
+                        <td> <input type="hidden" value="${u.id}" name="iduser"> </td>
                     </tr>
 
                 </c:forEach>
 
                 </tbody>
             </table>
+               </form>
+
         </div>
 
     </body>

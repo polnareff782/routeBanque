@@ -97,7 +97,7 @@ public class ClientDao {
 
         List<User> users = new ArrayList<>();
 
-        String sql = "SELECT c.numCp ,u.idutilisateur, p.idperson, p.nom, p.prenom, u.idrole, c.numCarte, c.etat FROM utilisateur u INNER JOIN person p INNER JOIN compte c ON p.idperson = u.idperson AND p.idperson = c.person_idperson WHERE u.idrole=3";
+        String sql = "SELECT * FROM utilisateur u INNER JOIN person p INNER JOIN compte c ON p.idperson = u.idperson AND p.idperson = c.person_idperson WHERE u.idrole=3";
 
         Connection connexion = AccessBd.getConnection();
 
@@ -107,7 +107,8 @@ public class ClientDao {
         while (rs.next()) {
             User u = new User();
             u.setId(rs.getInt("idutilisateur"));
-           
+            u.setLogin(rs.getString("login"));
+            u.setMdp(rs.getString("mdp"));
 
             
             Person p = new Person();
